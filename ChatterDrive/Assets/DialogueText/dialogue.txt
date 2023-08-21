@@ -1,0 +1,9 @@
+{
+    "name": "Mike",
+    "portraitImg": 1,
+    "dialogue": "Race like the wind"
+}{
+    "name": "Mike",
+    "portraitImg": 1,
+    "dialogue": "Race like the wind"
+}
