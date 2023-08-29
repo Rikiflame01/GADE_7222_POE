@@ -5,7 +5,7 @@ using UnityEngine;
 public class LinkedListOne<T>
 {
     public NodeOne<T> Start { get; set; }
-    private NodeOne<T> end;
+    public NodeOne<T> End { get; set; }
     private int size;
 
     public int Size()
@@ -18,21 +18,21 @@ public class LinkedListOne<T>
         return size == 0;
     }
 
-    //public void InsertAtStart(T data)
-    //{
-    //    NodeOne<T> node = new NodeOne<T>(data);
-    //    if(Start == null)
-    //    {
-    //        Start = node;
-    //        end = node;
-    //    }
-    //    else
-    //    {
-    //        node.Next = Start;
-    //        Start = node;
-    //    }
-    //    size++;
-    //}
+    public void InsertAtStart(T data)
+    {
+        NodeOne<T> node = new NodeOne<T>(data);
+        if (Start == null)
+        {
+            Start = node;
+            End = node;
+        }
+        else
+        {
+            node.Next = Start;
+            Start = node;
+        }
+        size++;
+    }
 
     public void DeleteFromStart()
     {
@@ -42,7 +42,7 @@ public class LinkedListOne<T>
             size--;
             if(Start == null)
             {
-                end = null;
+                End = null;
             }
         }
     }
@@ -53,14 +53,33 @@ public class LinkedListOne<T>
         if (Start == null)
         {
             Start = node;
-            end = node;
+            End = node;
         }
         else
         {
-            end.Next = node;
-            end = node;
+            End.Next = node;
+            End = node;
            //end = node
         }
         size++;
+    }
+
+    public void DeleteFromEnd()
+    {
+        if(size == 0)
+        {
+            return;
+        }
+
+        NodeOne<T> currentNode = Start;
+        for(int i = 0; i < size; i++)
+        {
+            currentNode = currentNode.Next;
+            
+        }
+        size--;
+        currentNode.Next = null;
+        End = currentNode;
+      
     }
 }
