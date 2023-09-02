@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DialogueManagerTest : MonoBehaviour
 {
+
     ADTQueue<int> test = new ADTQueue<int>();
 
+    //Dialogue a = new Dialogue();
     private void Start()
     {
         for(int i = 0; i < 5; i++)
@@ -20,4 +22,18 @@ public class DialogueManagerTest : MonoBehaviour
         test.Dequeue();
         Debug.Log(test.ToString());
     }
+
+
+
+    //public string GetCurrentDialogue()
+    //{
+    //    //
+    //}
+
+    public void NextDialogue()
+    {
+
+    }
+
+
 }

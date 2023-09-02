@@ -18,6 +18,7 @@ public class LinkedListOne<T>
         return size == 0;
     }
 
+    //Stack
     public void InsertAtStart(T data)
     {
         NodeOne<T> node = new NodeOne<T>(data);
@@ -34,6 +35,7 @@ public class LinkedListOne<T>
         size++;
     }
 
+    //Queue
     public void DeleteFromStart()
     {
         if(Start != null)
