@@ -23,13 +23,6 @@ public class DialogueManagerTest : MonoBehaviour
         Debug.Log(test.ToString());
     }
 
-
-
-    //public string GetCurrentDialogue()
-    //{
-    //    //
-    //}
-
     public void NextDialogue()
     {
 
