@@ -34,5 +34,29 @@ public class ChapterStack<T>
         return list.End.Data;
     }
 
-    
+    public override string ToString()
+    {
+
+        if (list.Size() == 0)
+        {
+            return string.Empty;
+        }
+
+        if (list.Size() == 1 && list.Start != null)
+        {
+            return list.Start.Data.ToString();
+        }
+
+        NodeOne<T> current = list.Start;
+        string concatenate = "";
+        while (current != null)
+        {
+            concatenate += $"{current.Data.ToString()} -> ";
+            current = current.Next;
+        }
+
+        return concatenate.ToString();
+    }
+
+
 }

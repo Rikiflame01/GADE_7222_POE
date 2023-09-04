@@ -73,15 +73,38 @@ public class LinkedListOne<T>
             return;
         }
 
-        NodeOne<T> currentNode = Start;
-        for(int i = 0; i < size; i++)
+        if(size == 1)
         {
-            currentNode = currentNode.Next;
-            
+            Start = End = null;
+            size = 0;
+            return;
         }
+
+        NodeOne<T> currentNode = Start;
+        //Get the node before the last node
+        for(int i = 1; i < size -1; i++)
+        {
+            //Check to see if the next node is not null
+            if(currentNode.Next != null)
+            {
+                currentNode = currentNode.Next;
+            }
+                       
+        }
+        
+        //Set the next node = null as current node is = second last node
+        //Set the end node = current node
+        if(currentNode.Next != null)
+        {
+            currentNode.Next = null;
+            End = currentNode;
+        }
+        
         size--;
-        currentNode.Next = null;
-        End = currentNode;
-      
+        if(size == 0)
+        {
+            Start = End = null;
+        }
+
     }
 }

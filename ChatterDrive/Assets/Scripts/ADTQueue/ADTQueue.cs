@@ -45,7 +45,6 @@ public class ADTQueue<T>
 
     public override string ToString()
     {
-        string showList = "";
 
         if (list.Size() == 0)
         {
@@ -59,9 +58,9 @@ public class ADTQueue<T>
                            
         NodeOne<T> current = list.Start;
         string concatenate = "";
-        while (current.Next != null)
+        while (current != null)
         {
-            concatenate += $"{current.Next.Data.ToString()} -> ";
+            concatenate += $"{current.Data.ToString()} -> ";
             current = current.Next;
         }
 
