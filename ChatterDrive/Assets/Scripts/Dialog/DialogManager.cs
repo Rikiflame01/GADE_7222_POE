@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 
-public class ManagerTest : MonoBehaviour
+public class DialogManager : MonoBehaviour
 {
     public TextMeshProUGUI uiText;  // Reference to the UI Text component
     public List<DialogComponent> Dialogs;  // List of DialogComponent objects
