@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ChapterStack<T>
 {
     LinkedListOne<T> list = new LinkedListOne<T>();

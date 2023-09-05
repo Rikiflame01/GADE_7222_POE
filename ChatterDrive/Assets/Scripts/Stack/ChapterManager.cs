@@ -4,17 +4,44 @@ using UnityEngine;
 
 public class ChapterManager : MonoBehaviour
 {
-    ChapterStack<int> chapterStack = new ChapterStack<int>();
+    public Transform[] checkPoints;
 
-    private void Start()
+    private ChapterStack<Transform> chapterStack = new ChapterStack<Transform>();
+
+    //Events
+    public delegate void CheckPointComplete(int numCheckpoints);
+    public static event CheckPointComplete OnCheckPointReached;
+    public static event CheckPointComplete OnStageComplete;
+
+    private void Awake()
     {
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < checkPoints.Length; i++)
         {
-            chapterStack.Push(i);
+            chapterStack.Push(checkPoints[i]);
         }
         Debug.Log(chapterStack.ToString());
+        Debug.Log(chapterStack.Count);
         //int poppedInt = chapterStack.Pop();
         //Debug.Log("Last int: " + poppedInt);
         //Debug.Log(chapterStack.ToString());
     }
+
+    public void CheckpointReached()
+    {
+        chapterStack.Pop();
+        OnCheckPointReached?.Invoke(chapterStack.Count);
+
+        if (chapterStack.IsEmpty) 
+        {
+            Debug.Log("Player has completed scene");
+        }
+    }
+
+    public  int GetNumCheckpoints()
+    {
+        return chapterStack.Count;
+    }
 }
+
+
+
