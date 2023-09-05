@@ -41,6 +41,12 @@ public class ChapterManager : MonoBehaviour
     {
         return chapterStack.Count;
     }
+
+    public Transform GetNextCheckpoint()
+    {
+        Debug.Log("Chapter Last value: " + chapterStack.Peek().name);
+        return chapterStack.Peek();
+    }
 }
 
 
