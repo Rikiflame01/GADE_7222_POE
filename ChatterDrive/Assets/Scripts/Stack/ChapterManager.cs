@@ -34,6 +34,7 @@ public class ChapterManager : MonoBehaviour
         if (chapterStack.IsEmpty) 
         {
             Debug.Log("Player has completed scene");
+            OnStageComplete?.Invoke(chapterStack.Count);
         }
     }
 

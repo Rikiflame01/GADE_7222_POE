@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckpointUI : MonoBehaviour
 {
+    [Header("Checkpoint UI")]
     public TextMeshProUGUI chaptersText;
     public TextMeshProUGUI timerText;
     public ChapterManager chapterManager;
     public float timePerCheckpoint = 10f;
+
+    [Header("StopGameScreens")]
+    public GameObject loseScreen;
+    public GameObject winScreen;
 
     private float timer;
 
@@ -21,11 +27,15 @@ public class CheckpointUI : MonoBehaviour
     private void OnEnable()
     {
         ChapterManager.OnCheckPointReached += OnCheckPointReached;
+        ChapterManager.OnStageComplete += OnStageComplete;
     }
+
+
 
     private void OnDisable()
     {
         ChapterManager.OnCheckPointReached -= OnCheckPointReached;
+        ChapterManager.OnStageComplete -= OnStageComplete;
     }
 
     private void Update()
@@ -35,6 +45,8 @@ public class CheckpointUI : MonoBehaviour
         if(timer <= 0.01)
         {
             Debug.Log("Time is up, player is dead");
+            ShowLoseScreen(true);
+            SetTimeScale(0);
             timer = 0;
         }
     }
@@ -45,5 +57,33 @@ public class CheckpointUI : MonoBehaviour
         timer += timePerCheckpoint;
     }
 
+    private void OnStageComplete(int numCheckpoints)
+    {
+        
+        ShowWinScreen(true);
+        SetTimeScale(0);
+    }
+
+    private void ShowLoseScreen(bool show)
+    {
+        loseScreen.SetActive(show);
+    }
+
+    private void ShowWinScreen(bool show)
+    {
+        winScreen.SetActive(show);
+    }
+
+    private void SetTimeScale(float timeScale)
+    {
+        Time.timeScale = timeScale;
+    }
+
+    public void RestartGame()
+    {
+        timer = timePerCheckpoint;
+        SetTimeScale(1);
+        SceneManager.LoadScene("CheckpointRace");
+    }
     
 }
