@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbb0607c08b56ee4cbd328b888eaf178, type: 3}
-  m_Name: Dialog7
+  m_Script: {fileID: 11500000, guid: fce078d37089361479e89cfda8844bb4, type: 3}
+  m_Name: Player
   m_EditorClassIdentifier: 
-  ID: Jack1
-  SpeakerName: Jack
-  DialogID: 7
-  Text: Nah, I'm being straight up. She was a lekker thing!
+  speakerName: Player
+  portrait: {fileID: 0}

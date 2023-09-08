@@ -1,46 +1,32 @@
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
-public class DialogManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI uiText;  // Reference to the UI Text component
-    public List<DialogComponent> Dialogs;  // List of DialogComponent objects
-    public DialogComponent CurrentDialogComponent;
-    private int currentEntryIndex = 0;  // To keep track of the dialog progress
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI dialogueText;
+    public SpriteRenderer portraitImage;
+    public Conversation conversation;
+    private ADTQueue<DialogueItem> dialogueQueue;
 
-    public void SetCurrentDialog(int index)
+    void Start()
     {
-        if (index >= 0 && index < Dialogs.Count)
+        dialogueQueue = new ADTQueue<DialogueItem>();
+        foreach (var item in conversation.dialogueItems)
         {
-            CurrentDialogComponent = Dialogs[index];
-            currentEntryIndex = 0;  // Reset the dialog index
+            dialogueQueue.Enqueue(item);
         }
+        DisplayNextDialogue();
     }
 
-    public void DisplayDialog()
+    public void DisplayNextDialogue()
     {
-        string dialogText = CurrentDialogComponent.GetDialogText();
-        uiText.text = dialogText;
-        CurrentDialogComponent.Display();
-    }
-
-    public void AdvanceDialog()
-    {
-        if (CurrentDialogComponent is Dialog)
+        if (dialogueQueue.Peek() != null) // Check if the queue is not empty using Peek
         {
-            Dialog dialog = (Dialog)CurrentDialogComponent;
-            if (currentEntryIndex < dialog.Components.Count)
-            {
-                uiText.text = dialog.Components[currentEntryIndex].GetDialogText();
-                currentEntryIndex++;
-            }
+            DialogueItem item = dialogueQueue.Dequeue();
+            nameText.text = item.speaker.speakerName;
+            dialogueText.text = item.dialogue;
+            portraitImage.sprite = item.speaker.portrait;
         }
     }
 }
-
-
-
-
-
