@@ -26,6 +26,7 @@ public class PlayerCollisions : MonoBehaviour
             GameObject obj = other.gameObject;
             chapterManager.CheckpointReached();
             Debug.Log("Checkpoints Trigger");
+            other.gameObject.SetActive(false);
 
         }
         //Check to see if player triggered speed boost
