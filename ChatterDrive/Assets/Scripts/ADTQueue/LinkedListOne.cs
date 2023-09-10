@@ -5,12 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class LinkedListOne<T>
 {
+    //Head and Tail Node using Start and End Node
     public NodeOne<T> Start { get; set; }
     public NodeOne<T> End { get; set; }
     private int size;
 
     public int Size()
     {
+        //Return the size of the linked list
         return size;
     }
 
@@ -22,7 +24,9 @@ public class LinkedListOne<T>
     //Stack
     public void InsertAtStart(T data)
     {
+        //Construct node with data
         NodeOne<T> node = new NodeOne<T>(data);
+
         if (Start == null)
         {
             Start = node;
@@ -30,17 +34,26 @@ public class LinkedListOne<T>
         }
         else
         {
+            //Move the start node to the next node then replace start with node
             node.Next = Start;
             Start = node;
         }
+        //Increase size of linked list
         size++;
     }
 
     //Queue
     public void DeleteFromStart()
     {
+        //Check if empty
+        if(IsEmpty())
+        {
+            return;
+        }
+
         if(Start != null)
         {
+            //Replace start node with the next node and decrease size of linked list
             Start = Start.Next;
             size--;
             if(Start == null)
@@ -53,30 +66,34 @@ public class LinkedListOne<T>
     public void InsertAtEnd(T data)
     {
         NodeOne<T> node = new NodeOne<T>(data);
+        //If first node then Start and End = node
         if (Start == null)
         {
             Start = node;
             End = node;
         }
-        else
+        else //Link the new node to the end node, end node is now node
         {
             End.Next = node;
             End = node;
            //end = node
         }
         size++;
+        //Increase size of linked list
     }
 
     public void DeleteFromEnd()
     {
-        if(size == 0)
+        if(IsEmpty())
         {
             return;
         }
 
+        //If list contains 1 node then set Start and End to null as list is now empty
         if(size == 1)
         {
-            Start = End = null;
+            Start = null;
+            End = null;
             size = 0;
             return;
         }
@@ -94,18 +111,14 @@ public class LinkedListOne<T>
         }
         
         //Set the next node = null as current node is = second last node
-        //Set the end node = current node
+        //Set the end node = current node as it is 2 before end so last gets deleted
         if(currentNode.Next != null)
         {
             currentNode.Next = null;
             End = currentNode;
         }
         
-        size--;
-        if(size == 0)
-        {
-            Start = End = null;
-        }
+        size--; //Decrease the size of list
 
     }
 }

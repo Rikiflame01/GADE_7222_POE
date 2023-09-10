@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Checkpoint
   - SpeedBoost
+  - Ground
   layers:
   - Default
   - TransparentFX

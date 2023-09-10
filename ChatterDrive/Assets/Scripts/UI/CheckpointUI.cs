@@ -46,14 +46,14 @@ public class CheckpointUI : MonoBehaviour
         {
             Debug.Log("Time is up, player is dead");
             ShowLoseScreen(true);
-            SetTimeScale(0);
+            
             timer = 0;
         }
     }
 
     private void OnCheckPointReached(int numCheckpoints)
     {
-        chaptersText.text = "Chapters Left: " + numCheckpoints;
+        chaptersText.text = "Checkpoints Left: " + numCheckpoints;
         timer += timePerCheckpoint;
     }
 
@@ -64,9 +64,10 @@ public class CheckpointUI : MonoBehaviour
         SetTimeScale(0);
     }
 
-    private void ShowLoseScreen(bool show)
+    public void ShowLoseScreen(bool show)
     {
         loseScreen.SetActive(show);
+        SetTimeScale(0);
     }
 
     private void ShowWinScreen(bool show)

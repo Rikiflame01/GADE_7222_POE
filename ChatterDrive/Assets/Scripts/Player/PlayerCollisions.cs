@@ -11,11 +11,9 @@ public class PlayerCollisions : MonoBehaviour
     {
 
 
-        if(collision.collider.CompareTag("Checkpoint"))
+        if(collision.collider.CompareTag("Ground"))
         {
-            GameObject obj = collision.collider.gameObject;
-            chapterManager.CheckpointReached();
-            Debug.Log("Checkpoints Collision");
+            
 
         }
     }
@@ -35,5 +33,7 @@ public class PlayerCollisions : MonoBehaviour
             playerMovement.IncreasePlayerSpeed(3f);
             other.gameObject.SetActive(false);
         }
+
+        
     }
 }

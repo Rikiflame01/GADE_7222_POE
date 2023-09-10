@@ -15,14 +15,18 @@ public class SceneLoader : MonoBehaviour
 {
     private SceneName scene;
 
-    public void LoadScene(SceneName sceneName)
+    //Basic implementation of a scene loader
+
+    public void LoadScene(SceneName sceneName) // Load a scene using enums
     {
+        Time.timeScale = 1f;
         scene = sceneName;
         SceneManager.LoadScene(scene.ToString());
     }
 
+    //Functions for loading various scenes 
     public void LoadMainMenu()
-    {
+    {  
         LoadScene(SceneName.MainMenu);
     }
 
@@ -48,6 +52,7 @@ public class SceneLoader : MonoBehaviour
 
     public void QuitGame()
     {
+        //Function for quitting the game
         Application.Quit();
     }
 }
