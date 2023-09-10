@@ -12,9 +12,13 @@ public class PlayerCheckpointPointer : MonoBehaviour
     {
         Transform chapterTransform = chapterManager.GetNextCheckpoint();
 
-        Vector3 direction = transform.position - chapterTransform.position;
+        if(chapterTransform != null )
+        {
+            Vector3 direction = transform.position - chapterTransform.position;
 
-        transform.forward = -direction;
+            transform.forward = -direction;
+        }
+        
     }
 
     private void LateUpdate()

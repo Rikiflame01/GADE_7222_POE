@@ -45,6 +45,10 @@ public class ChapterManager : MonoBehaviour
 
     public Transform GetNextCheckpoint()
     {
+        if(chapterStack.IsEmpty)
+        {
+            return null;
+        }
         Debug.Log("Chapter Last value: " + chapterStack.Peek().name);
         return chapterStack.Peek();
     }
