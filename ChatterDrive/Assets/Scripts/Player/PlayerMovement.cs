@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Varaibles for controlling player movement
     [Header("Movement Attributes: ")]
     [SerializeField] private float playerSpeed = 5f;
     [SerializeField] private float playerSpeedInc = 5f;
@@ -13,9 +14,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        //Set player Input
         playerInput = new PlayerInputActions();
     }
 
+    //Enable and Disable input actions
     private void OnEnable()
     {
         playerInput.Enable();
@@ -42,7 +45,9 @@ public class PlayerMovement : MonoBehaviour
 
         if(playerInputNormalized.magnitude > 0 )
         {
+            //Move player forwards and backwards
             transform.Translate(zMovement * playerSpeed * Time.deltaTime);
+            //Rotate player in the y plane
             transform.Rotate(yRotation * playerRotateSpeed * Time.deltaTime);
         }
     }
@@ -52,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(IncreaseSpeedTimer(time));
     }
 
+    //Increase player speed after speed boost for time(s)
     IEnumerator IncreaseSpeedTimer(float time)
     {
         playerSpeed += playerSpeedInc;

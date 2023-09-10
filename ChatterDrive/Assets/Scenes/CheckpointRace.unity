@@ -5359,6 +5359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1767181989}
+  checkpointUI: {fileID: 1035062297}
   chapterManager: {fileID: 1032609380}
 --- !u!4 &1767181988 stripped
 Transform:
