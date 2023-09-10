@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fce078d37089361479e89cfda8844bb4, type: 3}
-  m_Name: Player
+  m_Name: Mark
   m_EditorClassIdentifier: 
-  speakerName: Player
-  teamNumber: 1
-  portraitPrefab: {fileID: 4182996537947905966, guid: 16be786339822f34a88d3b14182105af,
+  speakerName: Mark
+  teamNumber: 2
+  portraitPrefab: {fileID: 4182996537947905966, guid: 0d36eca43985ba14fa144922bc9ab24d,
     type: 3}

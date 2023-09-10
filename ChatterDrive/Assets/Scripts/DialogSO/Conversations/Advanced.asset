@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5942f78a90ea06c4397df40b430fa6fd, type: 3}
+  m_Name: Advanced
+  m_EditorClassIdentifier: 
+  dialogueItems:
+  - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
+    dialogue: It's a split track, one wrong move and you're playing catch up. Strategy
+      over speed.
+    dialogueDescription: Overlooking The Dual Lanes
+  - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
+    dialogue: A divided path, just like our loyalties. But in the end, there's only
+      one winner.
+    dialogueDescription: Overlooking The Dual Lanes
+  - speaker: {fileID: 11400000, guid: 25aa20fdf158b204a912e2ddf97334ff, type: 2}
+    dialogue: Tracks change, racers adapt. The question is, can old dogs learn new
+      tricks?
+    dialogueDescription: Overlooking The Dual Lanes
+  - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
+    dialogue: The slipstreams here can be deceptive. But if used right, they're our
+      edge.
+    dialogueDescription: Scouting For Tactics
+  - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
+    dialogue: Wind and will, but sometimes it's the unexpected moves that seal the
+      deal.
+    dialogueDescription: Scouting For Tactics
+  - speaker: {fileID: 11400000, guid: 25aa20fdf158b204a912e2ddf97334ff, type: 2}
+    dialogue: Ever seen two tracks collide? It's both an art and a disaster.
+    dialogueDescription: A Dangerous Intersection
+  - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
+    dialogue: Collisions make for great stories, but only if you walk away from them.
+    dialogueDescription: By A Dangerous Intersection
+  - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
+    dialogue: We're not here for stories, we're here to race. And we're here to win.
+    dialogueDescription: By A Dangerous Intersection
+  - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
+    dialogue: Tracks come and go, but legends remain. Ready to carve your story?
+    dialogueDescription: Before The Big Event
+  - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
+    dialogue: Every track is a tale, every race a chapter. Let's begin.
+    dialogueDescription: Before The Big Event
+  - speaker: {fileID: 11400000, guid: 25aa20fdf158b204a912e2ddf97334ff, type: 2}
+    dialogue: The pages turn, but the story's far from over. Let's see who writes
+      the end.
+    dialogueDescription: Before The Big Event
