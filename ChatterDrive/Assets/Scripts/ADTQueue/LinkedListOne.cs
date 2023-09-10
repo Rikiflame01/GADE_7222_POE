@@ -21,27 +21,6 @@ public class LinkedListOne<T>
         return size == 0;
     }
 
-    //Stack
-    public void InsertAtStart(T data)
-    {
-        //Construct node with data
-        NodeOne<T> node = new NodeOne<T>(data);
-
-        if (Start == null)
-        {
-            Start = node;
-            End = node;
-        }
-        else
-        {
-            //Move the start node to the next node then replace start with node
-            node.Next = Start;
-            Start = node;
-        }
-        //Increase size of linked list
-        size++;
-    }
-
     //Queue
     public void DeleteFromStart()
     {
@@ -63,6 +42,7 @@ public class LinkedListOne<T>
         }
     }
 
+    //Stack and Queue
     public void InsertAtEnd(T data)
     {
         NodeOne<T> node = new NodeOne<T>(data);
@@ -82,6 +62,7 @@ public class LinkedListOne<T>
         //Increase size of linked list
     }
 
+    //Stack
     public void DeleteFromEnd()
     {
         if(IsEmpty())
