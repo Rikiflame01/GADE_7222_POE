@@ -10,15 +10,21 @@ public class PlayerCheckpointPointer : MonoBehaviour
    
     void Update()
     {
+        //Use the chapter Manager to direct the arrow
         Transform chapterTransform = chapterManager.GetNextCheckpoint();
 
-        Vector3 direction = transform.position - chapterTransform.position;
+        if(chapterTransform != null )
+        {
+            Vector3 direction = transform.position - chapterTransform.position;
 
-        transform.forward = -direction;
+            transform.forward = -direction; // changes the arrows forward direction towards the direction of the Check point
+        }
+        
     }
 
     private void LateUpdate()
     {
+        //Arrow follows player smoothly
         transform.position = target.position + targetOffset;
     }
 }

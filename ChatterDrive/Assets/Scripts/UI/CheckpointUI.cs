@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class CheckpointUI : MonoBehaviour
 {
+    // Properties for changing in game UI
     [Header("Checkpoint UI")]
     public TextMeshProUGUI chaptersText;
     public TextMeshProUGUI timerText;
     public ChapterManager chapterManager;
     public float timePerCheckpoint = 10f;
 
+    //References for changing UI screen
     [Header("StopGameScreens")]
     public GameObject loseScreen;
     public GameObject winScreen;
@@ -24,6 +26,7 @@ public class CheckpointUI : MonoBehaviour
         chaptersText.text = "Chapters Left: " + chapterManager.GetNumCheckpoints();
     }
 
+    //Event subscription and unsubscription
     private void OnEnable()
     {
         ChapterManager.OnCheckPointReached += OnCheckPointReached;
@@ -40,33 +43,38 @@ public class CheckpointUI : MonoBehaviour
 
     private void Update()
     {
+        //Show the player time left and round up 
         timer -= Time.deltaTime;
         timerText.text = "Time left: " + Mathf.Ceil(timer).ToString();
-        if(timer <= 0.01)
+
+        if(timer <= 0.01) //If time runs out show lose screen
         {
             Debug.Log("Time is up, player is dead");
             ShowLoseScreen(true);
-            SetTimeScale(0);
+            
             timer = 0;
         }
     }
 
     private void OnCheckPointReached(int numCheckpoints)
     {
-        chaptersText.text = "Chapters Left: " + numCheckpoints;
+        //Update Checkpoint UI
+        chaptersText.text = "Checkpoints Left: " + numCheckpoints;
         timer += timePerCheckpoint;
     }
 
     private void OnStageComplete(int numCheckpoints)
     {
-        
+        //Show won UI
         ShowWinScreen(true);
         SetTimeScale(0);
     }
 
-    private void ShowLoseScreen(bool show)
+    public void ShowLoseScreen(bool show)
     {
+        //Show lost UI
         loseScreen.SetActive(show);
+        SetTimeScale(0);
     }
 
     private void ShowWinScreen(bool show)
@@ -74,6 +82,7 @@ public class CheckpointUI : MonoBehaviour
         winScreen.SetActive(show);
     }
 
+    //Change game speed
     private void SetTimeScale(float timeScale)
     {
         Time.timeScale = timeScale;
@@ -83,7 +92,7 @@ public class CheckpointUI : MonoBehaviour
     {
         timer = timePerCheckpoint;
         SetTimeScale(1);
-        SceneManager.LoadScene("CheckpointRace");
+        SceneManager.LoadScene(SceneName.CheckpointRace.ToString());
     }
     
 }

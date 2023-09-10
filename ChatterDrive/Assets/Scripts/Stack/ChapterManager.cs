@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChapterManager : MonoBehaviour
 {
+    //Different checkpoints easier for level design
     public Transform[] checkPoints;
 
     private ChapterStack<Transform> chapterStack = new ChapterStack<Transform>();
@@ -15,19 +16,17 @@ public class ChapterManager : MonoBehaviour
 
     private void Awake()
     {
+        //Add the checkpoints to the chapterStack
         for(int i = 0; i < checkPoints.Length; i++)
         {
             chapterStack.Push(checkPoints[i]);
         }
         Debug.Log(chapterStack.ToString());
         Debug.Log(chapterStack.Count);
-        //int poppedInt = chapterStack.Pop();
-        //Debug.Log("Last int: " + poppedInt);
-        //Debug.Log(chapterStack.ToString());
     }
 
-    public void CheckpointReached()
-    {
+    public void CheckpointReached() //If a checkpoint has been reached delete it from stack and fire a event
+    {                               //If the stack is empty fire a stage complete event
         chapterStack.Pop();
         OnCheckPointReached?.Invoke(chapterStack.Count);
 
@@ -43,8 +42,13 @@ public class ChapterManager : MonoBehaviour
         return chapterStack.Count;
     }
 
+    //Check the top transform of the stack by using Peek for the arrow.
     public Transform GetNextCheckpoint()
     {
+        if(chapterStack.IsEmpty)
+        {
+            return null;
+        }
         Debug.Log("Chapter Last value: " + chapterStack.Peek().name);
         return chapterStack.Peek();
     }
