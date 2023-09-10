@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/MainMenu.unity
+    guid: 4318bb6e757dc38468c2ed93d6fa3d06
+  - enabled: 1
+    path: Assets/Scenes/CheckpointRace.unity
+    guid: 102b9210e5349d64aaf2b8420be7f8c5
+  - enabled: 1
+    path: Assets/Scenes/CheckpointRaceDialogue.unity
+    guid: f82d83310df084349ab03610f6baa853
+  - enabled: 1
+    path: Assets/Scenes/BeginnerRaceDialogue.unity
+    guid: e23b4db5a88f945439db37d488a1906f
+  - enabled: 1
+    path: Assets/Scenes/AdvancedRaceDialogue.unity
+    guid: 5013ea7c60a46f34495c53dfc90ea384
   m_configObjects: {}

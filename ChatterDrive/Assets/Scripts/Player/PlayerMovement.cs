@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Attributes: ")]
-    public float playerSpeed = 5f;
+    [SerializeField] private float playerSpeed = 5f;
+    [SerializeField] private float playerSpeedInc = 5f;
     public float playerRotateSpeed = 150f;
 
     PlayerInputActions playerInput;
@@ -44,5 +45,19 @@ public class PlayerMovement : MonoBehaviour
             transform.Translate(zMovement * playerSpeed * Time.deltaTime);
             transform.Rotate(yRotation * playerRotateSpeed * Time.deltaTime);
         }
+    }
+
+    public void IncreasePlayerSpeed(float time)
+    {
+        StartCoroutine(IncreaseSpeedTimer(time));
+    }
+
+    IEnumerator IncreaseSpeedTimer(float time)
+    {
+        playerSpeed += playerSpeedInc;
+        playerRotateSpeed += playerSpeedInc * 10;
+        yield return new WaitForSeconds(time);
+        playerSpeed -= playerSpeedInc;
+        playerRotateSpeed -= playerSpeedInc * 10;
     }
 }

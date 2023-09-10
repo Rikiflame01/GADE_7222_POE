@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
+    public PlayerMovement playerMovement;
     public ChapterManager chapterManager;
 
     private void OnCollisionEnter(Collision collision)
@@ -27,6 +28,12 @@ public class PlayerCollisions : MonoBehaviour
             chapterManager.CheckpointReached();
             Debug.Log("Checkpoints Trigger");
 
+        }
+
+        if(other.CompareTag("SpeedBoost"))
+        {
+            playerMovement.IncreasePlayerSpeed(3f);
+            other.gameObject.SetActive(false);
         }
     }
 }
