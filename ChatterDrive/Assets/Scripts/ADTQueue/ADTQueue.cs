@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class ADTQueue<T>
@@ -33,9 +34,27 @@ public class ADTQueue<T>
 
     public T Peek()
     {
-        if(list.Size() == 0)
+        if (list.Size() == 0)
         {
-            throw new InvalidOperationException("Queue is empty");
+            string currentSceneName = SceneManager.GetActiveScene().name;
+
+            if (currentSceneName == "CheckpointRaceDialogue")
+            {
+                SceneManager.LoadScene("CheckpointRace");
+                return default(T);
+            }
+            else if (currentSceneName == "Beginner Race Dialogue")
+            {
+                throw new InvalidOperationException("Not Implemented");
+            }
+            else if (currentSceneName == "Advanced Race Dialogue")
+            {
+                throw new InvalidOperationException("Not Implemented");
+            }
+            else
+            {
+                throw new InvalidOperationException("Queue is empty");
+            }
         }
         else
         {

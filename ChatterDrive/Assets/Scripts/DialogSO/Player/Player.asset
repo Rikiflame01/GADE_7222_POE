@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   speakerName: Player
+  teamNumber: 1
   portraitPrefab: {fileID: 4182996537947905966, guid: 16be786339822f34a88d3b14182105af,
     type: 3}

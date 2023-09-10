@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Mark
   m_EditorClassIdentifier: 
   speakerName: Mark
+  teamNumber: 2
   portraitPrefab: {fileID: 4182996537947905966, guid: 0d36eca43985ba14fa144922bc9ab24d,
     type: 3}
