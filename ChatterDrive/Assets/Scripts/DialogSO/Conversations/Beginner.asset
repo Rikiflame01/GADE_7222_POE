@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5942f78a90ea06c4397df40b430fa6fd, type: 3}
+  m_Name: Beginner
+  m_EditorClassIdentifier: 
+  dialogueItems:
+  - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
+    dialogue: Impressive stretch, isn't it? I've seen rookies buckle under the pressure
+      here.
+  - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
+    dialogue: Every track has its quirks, but it's the racer that makes the difference.
+      It's about learning its rhythm.
+  - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
+    dialogue: Think you've got the hang of it just by watching? It's not as easy
+      as it looks.
+  - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
+    dialogue: It's about anticipation, not reaction. We've been preparing for this.
+  - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
+    dialogue: That curve up ahead? Seen it take out some of the best. Hope you've
+      got good brakes.
+  - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
+    dialogue: It's not about braking, it's about control. Precision over power.
+  - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
+    dialogue: Racing here is like carving your name into history. Hope you've brought
+      your best ink.
+  - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
+    dialogue: Every race is an opportunity, every track a canvas. We're ready to
+      paint.

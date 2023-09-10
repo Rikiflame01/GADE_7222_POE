@@ -1,11 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI; // Required for the Image component
 
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
-    public SpriteRenderer portraitImage;
+    public Image portraitImage; // Changed from SpriteRenderer to Image
     public Conversation conversation;
     private ADTQueue<DialogueItem> dialogueQueue;
 
@@ -26,7 +27,13 @@ public class DialogueManager : MonoBehaviour
             DialogueItem item = dialogueQueue.Dequeue();
             nameText.text = item.speaker.speakerName;
             dialogueText.text = item.dialogue;
-            portraitImage.sprite = item.speaker.portrait;
+
+            // Assuming the prefab has an Image component directly attached to it
+            Image speakerImage = item.speaker.portraitPrefab.GetComponent<Image>();
+            if (speakerImage != null)
+            {
+                portraitImage.sprite = speakerImage.sprite;
+            }
         }
     }
 }
