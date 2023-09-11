@@ -8,6 +8,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
+/*
+This code defines a generic ADTQueue class, which represents a queue data structure using a linked list. The class provides basic queue operations:
+it works like the chapterStack using the functions from LinkedListOne.cs
+*/
+
 public class ADTQueue<T>
 {
     LinkedListOne<T> list = new LinkedListOne<T>();

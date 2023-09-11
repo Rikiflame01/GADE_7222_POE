@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    #region InspectorItems
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI teamNumberText;
 
@@ -13,11 +14,15 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueDescriptionText;
 
     public Image portraitImage;
+    #endregion
+
     public Conversation conversation;
 
     private ADTQueue<DialogueItem> dialogueQueue;
     private Image cachedSpeakerImage;
 
+
+    #region UnityMethods
     void Start()
     {
         dialogueQueue = new ADTQueue<DialogueItem>();
@@ -33,7 +38,9 @@ public class DialogueManager : MonoBehaviour
 
         DisplayNextDialogue();
     }
+    #endregion
 
+    #region Methods
     public void DisplayNextDialogue()
     {
         try
@@ -49,7 +56,8 @@ public class DialogueManager : MonoBehaviour
                 portraitImage.sprite = cachedSpeakerImage.sprite;
             }
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException) // If the queue is empty it will throw an error,
+                                          // this code catches it and changes the scene depending on the current scene name.
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
 
@@ -71,4 +79,5 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+    #endregion
 }
