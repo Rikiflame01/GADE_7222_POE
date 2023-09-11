@@ -36,25 +36,7 @@ public class ADTQueue<T>
     {
         if (list.Size() == 0)
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-
-            if (currentSceneName == "CheckpointRaceDialogue")
-            {
-                SceneManager.LoadScene("CheckpointRace");
-                return default(T);
-            }
-            else if (currentSceneName == "Beginner Race Dialogue")
-            {
-                throw new InvalidOperationException("Not Implemented");
-            }
-            else if (currentSceneName == "Advanced Race Dialogue")
-            {
-                throw new InvalidOperationException("Not Implemented");
-            }
-            else
-            {
-                throw new InvalidOperationException("Queue is empty");
-            }
+          throw new InvalidOperationException("Queue is empty");
         }
         else
         {

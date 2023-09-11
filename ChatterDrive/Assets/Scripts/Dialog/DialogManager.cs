@@ -1,5 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -34,7 +36,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextDialogue()
     {
-        if (dialogueQueue.Peek() != null)
+        try
         {
             DialogueItem item = dialogueQueue.Dequeue();
             nameText.text = item.speaker.speakerName;
@@ -45,6 +47,27 @@ public class DialogueManager : MonoBehaviour
             if (cachedSpeakerImage != null)
             {
                 portraitImage.sprite = cachedSpeakerImage.sprite;
+            }
+        }
+        catch (InvalidOperationException)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+
+            if (currentSceneName == "CheckpointRaceDialogue")
+            {
+                SceneManager.LoadScene("CheckpointRace");
+            }
+            else if (currentSceneName == "Beginner Race Dialogue")
+            {
+                throw new InvalidOperationException("Not Implemented");
+            }
+            else if (currentSceneName == "Advanced Race Dialogue")
+            {
+                throw new InvalidOperationException("Not Implemented");
+            }
+            else
+            {
+                throw new InvalidOperationException("Queue is empty");
             }
         }
     }
