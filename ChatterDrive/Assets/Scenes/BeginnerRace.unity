@@ -425,34 +425,6 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
---- !u!1 &467861538 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1121691241646861238, guid: 2e0421d389e45f14c87be7d30286b04a,
-    type: 3}
-  m_PrefabInstance: {fileID: 720058158}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &467861543
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467861538}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &499568148
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,12 +526,12 @@ PrefabInstance:
     - target: {fileID: 197076490173351238, guid: 2e0421d389e45f14c87be7d30286b04a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.69
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 197076490173351238, guid: 2e0421d389e45f14c87be7d30286b04a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -47.83
+      value: -42.4
       objectReference: {fileID: 0}
     - target: {fileID: 197076490173351238, guid: 2e0421d389e45f14c87be7d30286b04a,
         type: 3}
@@ -654,11 +626,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1121691241646861238, guid: 2e0421d389e45f14c87be7d30286b04a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 467861543}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e0421d389e45f14c87be7d30286b04a, type: 3}
 --- !u!1 &786003344
 GameObject:
