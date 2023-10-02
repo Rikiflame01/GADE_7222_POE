@@ -12,6 +12,7 @@ public class ChapterStack<T>
     public void Push(T item)
     {
         list.InsertAtEnd(item);
+        //InsertAtHead
     }
 
     //Pop last node in list and delete from list

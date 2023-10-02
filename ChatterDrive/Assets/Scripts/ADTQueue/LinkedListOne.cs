@@ -102,4 +102,6 @@ public class LinkedListOne<T>
         size--; //Decrease the size of list
 
     }
+
+    //Add Node at head and deleting at head
 }

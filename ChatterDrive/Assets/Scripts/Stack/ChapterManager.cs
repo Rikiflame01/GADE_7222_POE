@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class ChapterManager : MonoBehaviour
     public delegate void CheckPointComplete(int numCheckpoints);
     public static event CheckPointComplete OnCheckPointReached;
     public static event CheckPointComplete OnStageComplete;
+
+    //public static event Action 
 
     private void Awake()
     {

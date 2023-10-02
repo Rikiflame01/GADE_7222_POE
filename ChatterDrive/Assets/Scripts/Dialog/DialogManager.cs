@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
 
         if (conversation.dialogueItems.Count > 0)
         {
-            cachedSpeakerImage = conversation.dialogueItems[0].speaker.portraitPrefab.GetComponent<Image>();
+            cachedSpeakerImage = conversation.dialogueItems[0].speaker.portraitPrefab.GetComponent<Image>(); //parse image
         }
 
         DisplayNextDialogue();
@@ -60,7 +60,7 @@ public class DialogueManager : MonoBehaviour
                                           // this code catches it and changes the scene depending on the current scene name.
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
-
+            //static class
             if (currentSceneName == "CheckpointRaceDialogue")
             {
                 SceneManager.LoadScene("CheckpointRace");
