@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class LinkedListOne<T>
 {
     //Head and Tail Node using Start and End Node
@@ -101,6 +102,26 @@ public class LinkedListOne<T>
         
         size--; //Decrease the size of list
 
+    }
+
+    public T GetAtIndex(int index)
+    {
+        NodeOne<T> currentNode = Start;
+
+        if (IsEmpty() || index > size + 1)
+        {
+            //Will return null
+            currentNode = null;
+            return currentNode.Data;
+        }
+        
+
+        for(int i = 0; i < index; i++)
+        {
+            currentNode = currentNode.Next;
+        }
+
+        return currentNode.Data;
     }
 
     //Add Node at head and deleting at head
