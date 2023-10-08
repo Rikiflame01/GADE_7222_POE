@@ -19,7 +19,8 @@ public class Waypoints : MonoBehaviour
         
     }
 
-    public Transform ReachedWaypoint(int index)
+    //Get reference to the correct node in the linked list
+    public Transform GetNextWaypoint(int index)
     {
         //
         if(index == waypoints.Size())

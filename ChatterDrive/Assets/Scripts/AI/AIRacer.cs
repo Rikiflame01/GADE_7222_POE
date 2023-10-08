@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,32 +6,40 @@ using UnityEngine.AI;
 
 public class AIRacer : MonoBehaviour
 {
-    private NavMeshAgent racerAgent;
     public Waypoints waypoints;
-    public Transform test;
 
-    private int index = 0;
+    public int LapNum { get; private set; }
+
+    //Local
+    private NavMeshAgent racerAgent;
+    private int waypointIndex = 0;
+
+    public event Action OnAIReachedWaypoint;
 
     void Start()
     {
+        LapNum = 0;
         racerAgent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
         //For testing add collisions for proper after testing
-        racerAgent.SetDestination(test.position);
-        //Debug.Log(waypoints.ReachedWaypoint(index).position);
+        racerAgent.SetDestination(waypoints.GetNextWaypoint(waypointIndex).position);
+    }
 
-        //float distance = Vector3.Distance(transform.position, waypoints.ReachedWaypoint(index).position);
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Checkpoint"))
+        {
+            OnAIReachedWaypoint?.Invoke();
+            waypointIndex++;
+            if(waypointIndex >= waypoints.GetNumWaypoints())
+            {
+                LapNum++;
+                waypointIndex = 0;
+            }
+        }
 
-        //if(distance < racerAgent.stoppingDistance ) 
-        //{
-        //    index++;
-        //    if(index > waypoints.GetNumWaypoints())
-        //    {
-        //        index = 0;
-        //    }
-        //}
     }
 }

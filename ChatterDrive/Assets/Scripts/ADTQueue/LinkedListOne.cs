@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -122,6 +125,35 @@ public class LinkedListOne<T>
         }
 
         return currentNode.Data;
+    }
+
+    public void InsertAtHead(T data)
+    {
+        NodeOne<T> newNode = new NodeOne<T>(data);
+        if (Start == null)
+        {
+            Start = newNode;
+            End = newNode;
+        }
+        else
+        {
+            newNode.Next = Start;
+            Start = newNode;
+        }
+        size++;
+    }
+
+    public void DeleteFromHead()
+    {
+        if (Start != null)
+        {
+            Start = Start.Next;
+            size--;
+            if (Start == null)
+            {
+                Start = null;
+            }
+        }
     }
 
     //Add Node at head and deleting at head
