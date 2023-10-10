@@ -13,13 +13,14 @@ public class AIRacerSpawner : MonoBehaviour
 
     private List<GameObject> spawnedRacers;
 
-    void Awake()
+    void Start()
     {
         for(int i = 0; i < spawnObjects.Length; i++)
         {
             GameObject racerInstance = Instantiate(baseRacerPrefab, spawnObjects[i].spawnPoint.position, Quaternion.identity);
             AIRacerHandler racer = racerInstance.GetComponent<AIRacerHandler>();
-            racer.SetupRacerType(spawnObjects[i].type);
+            Debug.Log(spawnObjects[i].racerType);
+            racer.SetupRacerType(spawnObjects[i].racerType);
         }
 
     }
@@ -29,7 +30,7 @@ public class AIRacerSpawner : MonoBehaviour
 [Serializable]
 public struct SpawnObject
 { 
-    public RacerType type;
+    public RacerType racerType;
     public Transform spawnPoint;
 }
 

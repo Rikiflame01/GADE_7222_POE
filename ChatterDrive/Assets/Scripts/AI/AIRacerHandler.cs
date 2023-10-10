@@ -10,13 +10,13 @@ public class AIRacerHandler : MonoBehaviour
     //Cache the singleton reference on start or awake
     [SerializeField] private Waypoints waypoints;
     [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private NavMeshAgent racerAgent;
 
     //[]
 
     public int LapNum { get; private set; }
 
     //Local
-    private NavMeshAgent racerAgent;
     private int waypointIndex = 0;
 
     public event Action OnAIReachedWaypoint;
