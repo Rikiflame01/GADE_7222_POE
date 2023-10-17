@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 8962897294748416153}
   - component: {fileID: 5688998439947520694}
   - component: {fileID: 7819427616710270916}
-  - component: {fileID: 6182319454129087932}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -116,27 +115,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6182319454129087932
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7314156797271851473}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8257664234423719662
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,18 +160,18 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8257664234423719662}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 2
   m_Speed: 20
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.58
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
@@ -223,7 +201,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &148788066859664455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -260,6 +238,9 @@ MonoBehaviour:
   waypoints: {fileID: 0}
   meshRenderer: {fileID: 4979150148998889888}
   racerAgent: {fileID: 203677238167936140}
+  racerFactory: {fileID: 11400000, guid: 7231796401703ef489a72c6f7108cce8, type: 2}
+  waypointIndex: 0
+  isReached: 0
 --- !u!114 &926246024100217140
 MonoBehaviour:
   m_ObjectHideFlags: 0

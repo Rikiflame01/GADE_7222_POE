@@ -11,13 +11,12 @@ public class AIRacerHandler : MonoBehaviour
     [SerializeField] private Waypoints waypoints;
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private NavMeshAgent racerAgent;
-
-    //[]
+    [SerializeField] private AIRacerFactory racerFactory;
 
     public int LapNum { get; private set; }
-
-    //Local
-    private int waypointIndex = 0;
+    //Debugging
+    public int waypointIndex = 0;
+    public bool isReached;
 
     public event Action OnAIReachedWaypoint;
 
@@ -37,11 +36,14 @@ public class AIRacerHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Checkpoint"))
+        if(other.CompareTag("Checkpoint") && !isReached)
         {
-            OnAIReachedWaypoint?.Invoke();
+            Debug.Log($"Triggered by {gameObject.name} / {other.name}");
+            StartCoroutine(DisableRacerCollider());
             waypointIndex++;
-            if(waypointIndex >= waypoints.GetNumWaypoints())
+            isReached = true;
+
+            if (waypointIndex >= waypoints.GetNumWaypoints())
             {
                 LapNum++;
                 waypointIndex = 0;
@@ -54,32 +56,37 @@ public class AIRacerHandler : MonoBehaviour
     {
         AIRacerBase racerBase = null;
 
-        switch(racerType)
+        switch (racerType)
         {
             case RacerType.Pyro:
-                racerBase = AIRacerFactory.Instance.CreatePyroRacer();
+                racerBase = racerFactory.CreatePyroRacer();
                 break;
-                case RacerType.Hydro:
-                racerBase = AIRacerFactory.Instance.CreateHydroRacer();
+            case RacerType.Hydro:
+                racerBase = racerFactory.CreateHydroRacer();
                 break;
-                case RacerType.Pangean:
-                racerBase = AIRacerFactory.Instance.CreatePangeaRacer();
+            case RacerType.Pangean:
+                racerBase = racerFactory.CreatePangeaRacer();
                 break;
             case RacerType.Blizzardien:
-                racerBase = AIRacerFactory.Instance.CreateBlizzardRacer();
+                racerBase = racerFactory.CreateBlizzardRacer();
                 break;
             case RacerType.Magman:
-                racerBase = AIRacerFactory.Instance.CreateMagmaRacer();
+                racerBase = racerFactory.CreateMagmaRacer();
                 break;
         }
 
         racerAgent.speed = racerBase.RacerSpeed;
-        Debug.Log(racerAgent.speed);
-        meshRenderer.materials[0].color = racerBase.RacerColor;
+        meshRenderer.material.color = racerBase.RacerColor;
         racerAgent.acceleration = racerBase.RacerAcceleration;
-        Debug.Log(racerAgent.acceleration);
         racerAgent.angularSpeed = racerBase.RacerAngularSpeed;
-        Debug.Log(racerAgent.angularSpeed);
 
     }
+
+    //This method is for the object triggering twice when entering a checkpoint which lead to weird beaviour
+    IEnumerator DisableRacerCollider()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isReached = false;
+    }
+
 }

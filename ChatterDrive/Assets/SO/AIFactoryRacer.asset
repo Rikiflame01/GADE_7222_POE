@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6056be67e5ce7e64e8c1cad480f228c3, type: 3}
+  m_Name: AIFactoryRacer
+  m_EditorClassIdentifier: 
+  baseRacerPrefab: {fileID: 8257664234423719662, guid: dc4d41e877e624e45bd872e0f0137bc2,
+    type: 3}

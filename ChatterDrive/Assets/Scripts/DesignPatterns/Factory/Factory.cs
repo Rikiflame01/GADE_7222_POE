@@ -13,14 +13,11 @@ public enum RacerType
     Magman
 }
 
-public class Factory : MonoBehaviour
+[CreateAssetMenu(fileName = "New AI Factory", menuName = "AI Factory Racer")]
+public class AIRacerFactory: ScriptableObject, IAIRacerFactory
 {
+    [SerializeField] private GameObject baseRacerPrefab;
 
-}
-
-[Serializable]
-public class AIRacerFactory: Singleton<AIRacerFactory>, IAIRacerFactory
-{
     public AIRacerBlizzard CreateBlizzardRacer()
     {
         return new AIRacerBlizzard();
@@ -45,6 +42,14 @@ public class AIRacerFactory: Singleton<AIRacerFactory>, IAIRacerFactory
     {
         return new AIRacerPyro();
     }
+
+    public GameObject CreateRacer(RacerType type)
+    {
+        GameObject racerInstance = Instantiate(baseRacerPrefab); 
+        AIRacerHandler racerHandler = racerInstance.GetComponent<AIRacerHandler>();
+        racerHandler.SetupRacerType(type);
+        return racerInstance;
+    }
 }
 
 public interface IAIRacerFactory
@@ -54,10 +59,11 @@ public interface IAIRacerFactory
     AIRacerHydro CreateHydroRacer();
     AIRacerBlizzard CreateBlizzardRacer();
     AIRacerMagma CreateMagmaRacer();
+    GameObject CreateRacer(RacerType type);
 }
 
 [Serializable]
-public class AIRacerBase
+public class AIRacerBase : MonoBehaviour
 {
     //Racer Stats
     public RacerType RacerType {  get;private set; }
@@ -80,7 +86,7 @@ public class AIRacerBase
 public class AIRacerPyro :AIRacerBase
 {
     //Fire racers fast acceleration and low top speed
-    public AIRacerPyro() : base(Color.red, 7, 10, 360, RacerType.Pyro)
+    public AIRacerPyro() : base(Color.red, 12, 10, 720, RacerType.Pyro)
     {
         // 
     }
@@ -89,7 +95,7 @@ public class AIRacerPyro :AIRacerBase
 public class AIRacerHydro : AIRacerBase
 {
     //Water racers slow acceleration and high top speed
-    public AIRacerHydro() : base(Color.blue, 10, 6, 200, RacerType.Hydro)
+    public AIRacerHydro() : base(Color.blue, 9, 6, 200, RacerType.Hydro)
     {
         // 
     }
@@ -98,7 +104,7 @@ public class AIRacerHydro : AIRacerBase
 public class AIRacerPangea : AIRacerBase
 {
     //earth racers gradual acceleration and medium top speed
-    public AIRacerPangea() : base(Color.green, 8, 8, 100, RacerType.Pangean)
+    public AIRacerPangea() : base(Color.green, 8, 12, 100, RacerType.Pangean)
     {
         // 
     
@@ -108,7 +114,7 @@ public class AIRacerPangea : AIRacerBase
 public class AIRacerBlizzard : AIRacerBase
 {
     //earth racers gradual acceleration and medium top speed
-    public AIRacerBlizzard() : base(Color.magenta, 7, 12, 420, RacerType.Blizzardien)
+    public AIRacerBlizzard() : base(Color.magenta, 7, 8, 420, RacerType.Blizzardien)
     {
         // 
 
@@ -118,7 +124,7 @@ public class AIRacerBlizzard : AIRacerBase
 public class AIRacerMagma : AIRacerBase
 {
     //earth racers gradual acceleration and medium top speed
-    public AIRacerMagma() : base(Color.yellow, 12, 7, 270, RacerType.Magman)
+    public AIRacerMagma() : base(Color.yellow, 8, 9, 270, RacerType.Magman)
     {
         // 
 
