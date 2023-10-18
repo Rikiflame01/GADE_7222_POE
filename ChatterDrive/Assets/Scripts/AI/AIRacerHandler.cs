@@ -39,7 +39,7 @@ public class AIRacerHandler : MonoBehaviour
         if(other.CompareTag("Checkpoint") && !isReached)
         {
             Debug.Log($"Triggered by {gameObject.name} / {other.name}");
-            StartCoroutine(DisableRacerCollider());
+            StartCoroutine(DisableRacerTrigger());
             waypointIndex++;
             isReached = true;
 
@@ -82,8 +82,13 @@ public class AIRacerHandler : MonoBehaviour
 
     }
 
+    public void SetRacerMaterial(Material racerMaterial)
+    {
+        meshRenderer.material = racerMaterial;
+    }
+
     //This method is for the object triggering twice when entering a checkpoint which lead to weird beaviour
-    IEnumerator DisableRacerCollider()
+    IEnumerator DisableRacerTrigger()
     {
         yield return new WaitForSeconds(0.5f);
         isReached = false;

@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: {fileID: 0}
-  meshRenderer: {fileID: 4979150148998889888}
+  meshRenderer: {fileID: 1270397603416569214}
   racerAgent: {fileID: 203677238167936140}
   racerFactory: {fileID: 11400000, guid: 7231796401703ef489a72c6f7108cce8, type: 2}
   waypointIndex: 0
@@ -331,15 +331,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eec7e69cc1fd9e240a0f1422310d4228, type: 3}
---- !u!4 &2966641847949771866 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: eec7e69cc1fd9e240a0f1422310d4228,
+--- !u!23 &1270397603416569214 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4683669308469848369, guid: eec7e69cc1fd9e240a0f1422310d4228,
     type: 3}
   m_PrefabInstance: {fileID: 3359993698730877873}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &4979150148998889888 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1461304994638716399, guid: eec7e69cc1fd9e240a0f1422310d4228,
+--- !u!4 &2966641847949771866 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: eec7e69cc1fd9e240a0f1422310d4228,
     type: 3}
   m_PrefabInstance: {fileID: 3359993698730877873}
   m_PrefabAsset: {fileID: 0}

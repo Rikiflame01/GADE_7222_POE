@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseRacerPrefab: {fileID: 8257664234423719662, guid: dc4d41e877e624e45bd872e0f0137bc2,
     type: 3}
+  racerMaterials:
+  - {fileID: 2100000, guid: 9d0b33b3f9ab56b41a1d77408dbfadd4, type: 2}
+  - {fileID: 2100000, guid: 104c87c4f62a0d949942224a031b4844, type: 2}
+  - {fileID: 2100000, guid: 38d520783d43d494f99b1f8e47356272, type: 2}
+  - {fileID: 2100000, guid: 80edcddbe5595aa44b37588f4ffebffc, type: 2}
+  - {fileID: 2100000, guid: 4b8e6c1195912d346b24865e08ff84dc, type: 2}
