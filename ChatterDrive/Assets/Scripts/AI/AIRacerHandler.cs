@@ -19,12 +19,14 @@ public class AIRacerHandler : MonoBehaviour
     public bool isReached;
 
     public event Action OnAIReachedWaypoint;
+    private AIRacerPosition racerPosition;
 
     void Start()
     {
         LapNum = 0;
         racerAgent = GetComponent<NavMeshAgent>();
         waypoints = Waypoints.Instance;
+        racerPosition = new AIRacerPosition();
         //SetupRacerType()
     }
 
@@ -40,15 +42,24 @@ public class AIRacerHandler : MonoBehaviour
         {
             Debug.Log($"Triggered by {gameObject.name} / {other.name}");
             StartCoroutine(DisableRacerTrigger());
-            waypointIndex++;
-            isReached = true;
-
-            if (waypointIndex >= waypoints.GetNumWaypoints())
-            {
-                LapNum++;
-                waypointIndex = 0;
-            }
+            RacerReachedCheckpoint();
         }
+
+    }
+
+    private void RacerReachedCheckpoint()
+    {
+        waypointIndex++;
+        isReached = true;
+
+        if (waypointIndex >= waypoints.GetNumWaypoints())
+        {
+            LapNum++;
+            waypointIndex = 0;
+        }
+
+        racerPosition.lapNum = LapNum;
+        racerPosition.index = waypointIndex;
 
     }
 
@@ -94,4 +105,16 @@ public class AIRacerHandler : MonoBehaviour
         isReached = false;
     }
 
+    public AIRacerPosition GetAIRacerPosition()
+    {
+        return racerPosition;
+    }
+
+}
+
+[Serializable]
+public struct AIRacerPosition
+{
+    public int lapNum;
+    public int index;
 }
