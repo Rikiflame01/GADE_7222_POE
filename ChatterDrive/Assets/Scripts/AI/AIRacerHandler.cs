@@ -14,16 +14,19 @@ public class AIRacerHandler : MonoBehaviour
     [SerializeField] private AIRacerFactory racerFactory;
 
     public int LapNum { get; private set; }
+    [field: SerializeField] public int Index { get; private set; }
     //Debugging
     public int waypointIndex = 0;
+
     public bool isReached;
 
-    public event Action OnAIReachedWaypoint;
+    public static event Action<int> OnAIReachedWaypoint;
     private AIRacerPosition racerPosition;
 
     void Start()
     {
         LapNum = 0;
+        Index = 0;
         racerAgent = GetComponent<NavMeshAgent>();
         waypoints = Waypoints.Instance;
         racerPosition = new AIRacerPosition();
@@ -50,6 +53,8 @@ public class AIRacerHandler : MonoBehaviour
     private void RacerReachedCheckpoint()
     {
         waypointIndex++;
+        Index++;
+        OnAIReachedWaypoint?.Invoke(Index);
         isReached = true;
 
         if (waypointIndex >= waypoints.GetNumWaypoints())

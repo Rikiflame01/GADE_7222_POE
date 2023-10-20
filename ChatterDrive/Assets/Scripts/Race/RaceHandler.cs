@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,50 @@ public class RaceHandler : MonoBehaviour
 {
     [Header("Testing")]
     [SerializeField] private List<AIRacerHandler> racers = new List<AIRacerHandler>();
+
+    //Local
+    private int currentHighestIndex;
+    private int currentHighestLapNum;
+
+    private void Start()
+    {
+        currentHighestIndex = 0;
+        currentHighestLapNum = 0;
+    }
+
+    private void OnEnable()
+    {
+        AIRacerHandler.OnAIReachedWaypoint += HandleRacerCheckpointTriggered;
+    }
+
+    private void OnDisable()
+    {
+        AIRacerHandler.OnAIReachedWaypoint -= HandleRacerCheckpointTriggered;
+    }
+
+    private void HandleRacerCheckpointTriggered(int index)
+    {
+        AIRacerHandler tempValue = null;
+
+        if(index > currentHighestIndex)
+        {
+            //This racer will be first
+            currentHighestIndex = index;
+        }
+
+        for(int i = 0; i < racers.Count-1; i++)
+        {
+            for(int j = i+1; j < racers.Count; j++)
+            {
+                if (racers[i].Index < racers[j].Index)
+                {
+                    tempValue = racers[i];
+                    racers[i] = racers[j];
+                    racers[j] = tempValue;
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// Add the AIRacer Handlers in AIRacer Spawner to keep track of positions
@@ -25,23 +70,7 @@ public class RaceHandler : MonoBehaviour
 
     private void CheckRacersPosition()
     {
-        int maxLap = 0;
-        int maxIndex = 0;
-
-        //Check their lapNum and check their index
-        foreach(AIRacerHandler handler in racers)
-        {
-            AIRacerPosition racerPos = handler.GetAIRacerPosition();
-
-            if(racerPos.lapNum > maxLap)
-            {
-                maxLap = racerPos.lapNum;
-            }
-
-            if(racerPos.index > maxIndex)
-            {
-                maxIndex = racerPos.index;
-            }
-        }
+       //Check however is closest to the last checkpoint
+       
     }
 }
