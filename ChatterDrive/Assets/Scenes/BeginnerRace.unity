@@ -5725,6 +5725,16 @@ PrefabInstance:
     - target: {fileID: 6995078808908589564, guid: 2e0421d389e45f14c87be7d30286b04a,
         type: 3}
       propertyPath: playerSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995078808908589564, guid: 2e0421d389e45f14c87be7d30286b04a,
+        type: 3}
+      propertyPath: deceleration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995078808908589564, guid: 2e0421d389e45f14c87be7d30286b04a,
+        type: 3}
+      propertyPath: playerRotateSpeed
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7485431359456427791, guid: 2e0421d389e45f14c87be7d30286b04a,
@@ -12113,6 +12123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   factory: {fileID: 11400000, guid: 7231796401703ef489a72c6f7108cce8, type: 2}
+  raceHandler: {fileID: 0}
   spawnObjects:
   - racerType: 0
     spawnPoint: {fileID: 211395898}
