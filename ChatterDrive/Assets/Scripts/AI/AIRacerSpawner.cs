@@ -23,7 +23,8 @@ public class AIRacerSpawner : MonoBehaviour
             racerInstance.name = spawnObjects[i].racerType.ToString();
             racerInstance.transform.position = spawnObjects[i].spawnPoint.position;
             racerInstance.GetComponent<NavMeshAgent>().enabled = true;
-           // raceHandler.AddRacer(racerInstance.GetComponent<AIRacerHandler>());
+            AIRacerHandler racer = racerInstance.GetComponent<AIRacerHandler>();
+            raceHandler.AddRacer(racer, racer.GetRacerUI());
         }
     }
 

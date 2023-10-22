@@ -12,6 +12,7 @@ public class AIRacerHandler : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private NavMeshAgent racerAgent;
     [SerializeField] private AIRacerFactory racerFactory;
+    [SerializeField] private RacerUI racerUI;
 
     public int LapNum { get; private set; }
     [field: SerializeField] public int Index { get; private set; }
@@ -21,7 +22,6 @@ public class AIRacerHandler : MonoBehaviour
     public bool isReached;
 
     public static event Action<int> OnAIReachedWaypoint;
-    private AIRacerPosition racerPosition;
 
     void Start()
     {
@@ -29,7 +29,6 @@ public class AIRacerHandler : MonoBehaviour
         Index = 0;
         racerAgent = GetComponent<NavMeshAgent>();
         waypoints = Waypoints.Instance;
-        racerPosition = new AIRacerPosition();
         //SetupRacerType()
     }
 
@@ -43,7 +42,7 @@ public class AIRacerHandler : MonoBehaviour
     {
         if(other.CompareTag("Checkpoint") && !isReached)
         {
-            Debug.Log($"Triggered by {gameObject.name} / {other.name}");
+            //Debug.Log($"Triggered by {gameObject.name} / {other.name}");
             StartCoroutine(DisableRacerTrigger());
             RacerReachedCheckpoint();
         }
@@ -62,9 +61,6 @@ public class AIRacerHandler : MonoBehaviour
             LapNum++;
             waypointIndex = 0;
         }
-
-        racerPosition.lapNum = LapNum;
-        racerPosition.index = waypointIndex;
 
     }
 
@@ -110,16 +106,9 @@ public class AIRacerHandler : MonoBehaviour
         isReached = false;
     }
 
-    public AIRacerPosition GetAIRacerPosition()
+    public RacerUI GetRacerUI()
     {
-        return racerPosition;
+        return racerUI;
     }
 
-}
-
-[Serializable]
-public struct AIRacerPosition
-{
-    public int lapNum;
-    public int index;
 }
