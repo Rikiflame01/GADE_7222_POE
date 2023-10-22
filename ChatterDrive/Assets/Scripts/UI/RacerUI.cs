@@ -14,9 +14,9 @@ public class RacerUI : MonoBehaviour
     public void SetUpRacerUI(string position, string name, string teamColour)
     {
         RacerName = name;
-        positionText.text = position;
+        //positionText.text = position;
         nameText.text = name;
-        colourText.text = teamColour;
+        //colourText.text = teamColour;
     }
 
     public void ChangeRacerPos(string position)

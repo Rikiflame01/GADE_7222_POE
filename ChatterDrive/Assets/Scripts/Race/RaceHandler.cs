@@ -10,6 +10,7 @@ public class RaceHandler : MonoBehaviour
     [SerializeField] private List<RacerUI> racersWithPlayerUI = new List<RacerUI>();
 
     [SerializeField] private RacerUI playerUICard;
+    [SerializeField] private Transform leaderBoardContainer;
 
     //Local
     private int currentHighestIndex;
@@ -44,12 +45,14 @@ public class RaceHandler : MonoBehaviour
 
     private void InsertPlayerInList()
     {
+        //racersWithPlayerUI.Remove(playerUICard);
         for (int i = 0; i < racers.Count; i++)
         {
             if (playerIndex > racers[i].Index)
             {
-                racersWithPlayerUI.Remove(playerUICard);
-                racersWithPlayerUI.Insert(i, playerUICard);
+                racersWithPlayerUI.Add(playerUICard);
+                //racersWithPlayerUI.Insert(i, playerUICard);
+                //playerUICard.SetUpRacerUI("","Player", "");
             }
         }
     }
@@ -86,6 +89,7 @@ public class RaceHandler : MonoBehaviour
         }
 
         InsertPlayerInList();
+        ShowRacerPositions();
     }
 
     /// <summary>
@@ -109,5 +113,21 @@ public class RaceHandler : MonoBehaviour
     {
        //Check however is closest to the last checkpoint
        
+    }
+
+    private void ShowRacerPositions()
+    {
+        for(int i = 0; i < racersWithPlayerUI.Count; i++)
+        {
+            //Destroy(racersWithPlayerUI[i]);
+
+            if (racersWithPlayerUI[i].RacerName != "Player")
+            {
+                racersWithPlayerUI[i].SetUpRacerUI("", racers[i].name, "");
+            }
+                
+
+            Instantiate(racersWithPlayerUI[i], leaderBoardContainer);
+        }
     }
 }
