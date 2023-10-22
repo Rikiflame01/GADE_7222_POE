@@ -9,15 +9,23 @@ public class Waypoints : Singleton<Waypoints>
 
     private LinkedListOne<Transform> waypoints = new LinkedListOne<Transform>();
 
+
+
     void Awake()
     {
         //Populate the linked list with waypoints
-        for(int i = 0; i < AIWaypoints.Length; i++)
+        for (int i = 0; i < AIWaypoints.Length; i++)
         {
             waypoints.InsertAtEnd(AIWaypoints[i]);
         }
         
     }
+
+    public Transform GetLastWaypoint()
+    {
+        return waypoints.GetAtIndex(waypoints.Size() - 1);
+    }
+
 
     //Get reference to the correct node in the linked list
     public Transform GetNextWaypoint(int index)
