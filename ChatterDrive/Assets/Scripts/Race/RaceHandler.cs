@@ -1,133 +1,128 @@
-using JetBrains.Annotations;
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
+
+
 
 public class RaceHandler : MonoBehaviour
 {
     [Header("Testing")]
-    [SerializeField] private List<AIRacerHandler> racers = new List<AIRacerHandler>();
-    [SerializeField] private List<RacerUI> racersWithPlayerUI = new List<RacerUI>();
-
-    [SerializeField] private RacerUI playerUICard;
     [SerializeField] private Transform leaderBoardContainer;
 
-    //Local
-    private int currentHighestIndex;
-    private int playerIndex;
-    private int currentHighestLapNum;
+    [SerializeField]
+    private List<RacerData> racersList = new List<RacerData>();
 
-    private void Start()
-    {
-        currentHighestIndex = 0;
-        currentHighestLapNum = 0;
-    }
+    //Local
+    private bool spawned = false;
+    private List<RacerUI> spawnedUIElements = new List<RacerUI>();
 
     private void OnEnable()
     {
         AIRacerHandler.OnAIReachedWaypoint += HandleRacerCheckpointTriggered;
-        ChapterManager.OnCheckPointReached += HandlePlayerCheckpointTrigger;
+        ChapterManager.OnCheckPointReached += HandleRacerCheckpointTriggered;
     }
-
 
     private void OnDisable()
     {
-        ChapterManager.OnCheckPointReached -= HandlePlayerCheckpointTrigger;
         AIRacerHandler.OnAIReachedWaypoint -= HandleRacerCheckpointTriggered;
+        ChapterManager.OnCheckPointReached -= HandleRacerCheckpointTriggered;
     }
 
-    private void HandlePlayerCheckpointTrigger(int numCheckpoints)
+    private RacerData GetRacerByName(string racerName)
     {
-        playerIndex = numCheckpoints;
-        //Check all the other racers index:
-        InsertPlayerInList();
-    }
-
-    private void InsertPlayerInList()
-    {
-        //racersWithPlayerUI.Remove(playerUICard);
-        for (int i = 0; i < racers.Count; i++)
+        foreach (var racer in racersList)
         {
-            if (playerIndex > racers[i].Index)
+            if (racer.RacerName == racerName)
             {
-                racersWithPlayerUI.Add(playerUICard);
-                //racersWithPlayerUI.Insert(i, playerUICard);
-                //playerUICard.SetUpRacerUI("","Player", "");
+                return racer;
             }
         }
+        return null;
     }
 
-    private void HandleRacerCheckpointTriggered(int index)
+    private void HandleRacerCheckpointTriggered(int numCheckpoints)
     {
-        AIRacerHandler tempValue = null;
-        RacerUI tempVal2 = null;
+        RacerData playerData = GetRacerByName("Player");
 
-        if(index > currentHighestIndex)
+        if (playerData != null)
         {
-            //This racer will be first
-            currentHighestIndex = index;
+            playerData.Index = numCheckpoints;
+            SortRacersList();
+            UpdateRacerPositionsUI();
         }
+    }
 
-        //Use 
-        for (int i = 0; i < racers.Count - 1; i++)
+    private void HandleRacerCheckpointTriggered(AIRacerHandler racer, int index)
+    {
+        RacerData racerData = GetRacerByName(racer.name);
+        if (racerData != null)
         {
-            for (int j = i + 1; j < racers.Count; j++)
-            {
-                if (racers[i].Index < racers[j].Index)
-                {
-                    tempValue = racers[i];
-                    tempVal2 = racersWithPlayerUI[i];
-                    //
-                    racers[i] = racers[j];
-                    racersWithPlayerUI[i] = racersWithPlayerUI[j];
-                    //
-                    racers[j] = tempValue;
-                    racersWithPlayerUI[j] = tempVal2;
+            racerData.Index = index;
+            SortRacersList();
+            UpdateRacerPositionsUI();
+        }
+    }
 
+    // Bubble sort the racers list based on their indexes
+    private void SortRacersList()
+    {
+        for (int i = 0; i < racersList.Count - 1; i++)
+        {
+            for (int j = 0; j < racersList.Count - i - 1; j++)
+            {
+                if (racersList[j].Index < racersList[j + 1].Index)
+                {
+                    RacerData temp = racersList[j];
+                    racersList[j] = racersList[j + 1];
+                    racersList[j + 1] = temp;
                 }
             }
         }
-
-        InsertPlayerInList();
-        ShowRacerPositions();
     }
 
-    /// <summary>
-    /// Add the AIRacer Handlers in AIRacer Spawner to keep track of positions
-    /// </summary>
-    /// <param name="handler"></param>
-    public void AddRacer(AIRacerHandler handler, RacerUI racerUI)
+    public void AddRacer(string racerName, int initialIndex, RacerUI uiElement)
     {
-        racers.Add(handler);
-        racersWithPlayerUI.Add(racerUI);
-    }
-
-    private void Update()
-    {
-        if (racers.Count == 0) return;
-
-
-    }
-
-    private void CheckRacersPosition()
-    {
-       //Check however is closest to the last checkpoint
-       
-    }
-
-    private void ShowRacerPositions()
-    {
-        for(int i = 0; i < racersWithPlayerUI.Count; i++)
+        //Check if UI element null
+        if (uiElement == null)
         {
-            //Destroy(racersWithPlayerUI[i]);
-
-            if (racersWithPlayerUI[i].RacerName != "Player")
-            {
-                racersWithPlayerUI[i].SetUpRacerUI("", racers[i].name, "");
-            }
-                
-
-            Instantiate(racersWithPlayerUI[i], leaderBoardContainer);
+            Debug.LogError($"NUll UI element from {racerName}");
+            return;
         }
+        racersList.Add(new RacerData(racerName, initialIndex, uiElement));
+    }
+
+    private void UpdateRacerPositionsUI()
+    {
+        if (!spawned)
+        { 
+            foreach (RacerData racer in racersList)
+            {
+                RacerUI spawnedUI = Instantiate(racer.RacerUIElement, leaderBoardContainer);
+                spawnedUIElements.Add(spawnedUI);
+            }
+            spawned = true;
+        }
+
+        for (int i = 0; i < racersList.Count; i++)
+        {
+            spawnedUIElements[i].SetUpRacerUI((i+1).ToString(), racersList[i].RacerName);
+        }
+    }
+}
+
+[Serializable]
+public class RacerData
+{
+    public string RacerName { get; set; }
+    public int Index { get; set; }
+    public RacerUI RacerUIElement { get; set; }
+
+    public RacerData(string racerName, int index, RacerUI racerUI)
+    {
+        RacerName = racerName;
+        Index = index;
+        RacerUIElement = racerUI;
     }
 }

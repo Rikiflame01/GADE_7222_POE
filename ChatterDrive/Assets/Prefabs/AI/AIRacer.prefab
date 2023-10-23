@@ -151,7 +151,7 @@ Transform:
   m_Children:
   - {fileID: 4588791323855260715}
   - {fileID: 8962897294748416153}
-  - {fileID: 941865063068842689}
+  - {fileID: 5176486934832789511}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &203677238167936140
@@ -240,7 +240,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 1270397603416569214}
   racerAgent: {fileID: 203677238167936140}
   racerFactory: {fileID: 11400000, guid: 7231796401703ef489a72c6f7108cce8, type: 2}
-  racerUI: {fileID: 1744337848992567381}
+  racerUI: {fileID: 5976729910885061267}
   <Index>k__BackingField: 0
   waypointIndex: 0
   isReached: 0
@@ -346,7 +346,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3359993698730877873}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8383392538731619276
+--- !u!1001 &4509076436295557386
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -464,17 +464,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30f6af4f0775c414888c3f17b16d54a3, type: 3}
---- !u!224 &941865063068842689 stripped
+--- !u!224 &5176486934832789511 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8738643883611887885, guid: 30f6af4f0775c414888c3f17b16d54a3,
     type: 3}
-  m_PrefabInstance: {fileID: 8383392538731619276}
+  m_PrefabInstance: {fileID: 4509076436295557386}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1744337848992567381 stripped
+--- !u!114 &5976729910885061267 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7810060962680714137, guid: 30f6af4f0775c414888c3f17b16d54a3,
     type: 3}
-  m_PrefabInstance: {fileID: 8383392538731619276}
+  m_PrefabInstance: {fileID: 4509076436295557386}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

@@ -13,8 +13,6 @@ public class AIRacerSpawner : MonoBehaviour
     [Header("Settings: ")]
     [SerializeField] private SpawnObject[] spawnObjects;
 
-    private List<GameObject> spawnedRacers;
-
     void Start()
     {
         for (int i = 0; i < spawnObjects.Length; i++)
@@ -24,7 +22,7 @@ public class AIRacerSpawner : MonoBehaviour
             racerInstance.transform.position = spawnObjects[i].spawnPoint.position;
             racerInstance.GetComponent<NavMeshAgent>().enabled = true;
             AIRacerHandler racer = racerInstance.GetComponent<AIRacerHandler>();
-            raceHandler.AddRacer(racer, racer.GetRacerUI());
+            raceHandler.AddRacer(racerInstance.name, racer.Index, racer.GetRacerUI());
         }
     }
 

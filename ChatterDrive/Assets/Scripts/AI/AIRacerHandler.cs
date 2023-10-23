@@ -21,7 +21,8 @@ public class AIRacerHandler : MonoBehaviour
 
     public bool isReached;
 
-    public static event Action<int> OnAIReachedWaypoint;
+    public delegate void WaypointReached(AIRacerHandler handler, int index);
+    public static event WaypointReached OnAIReachedWaypoint;
 
     void Start()
     {
@@ -42,7 +43,7 @@ public class AIRacerHandler : MonoBehaviour
     {
         if(other.CompareTag("Checkpoint") && !isReached)
         {
-            //Debug.Log($"Triggered by {gameObject.name} / {other.name}");
+            Debug.Log($"Triggered by {gameObject.name} / {other.name}");
             StartCoroutine(DisableRacerTrigger());
             RacerReachedCheckpoint();
         }
@@ -53,7 +54,7 @@ public class AIRacerHandler : MonoBehaviour
     {
         waypointIndex++;
         Index++;
-        OnAIReachedWaypoint?.Invoke(Index);
+        OnAIReachedWaypoint?.Invoke(this, Index);
         isReached = true;
 
         if (waypointIndex >= waypoints.GetNumWaypoints())
@@ -61,7 +62,6 @@ public class AIRacerHandler : MonoBehaviour
             LapNum++;
             waypointIndex = 0;
         }
-
     }
 
     public void SetupRacerType(RacerType racerType)
@@ -112,3 +112,4 @@ public class AIRacerHandler : MonoBehaviour
     }
 
 }
+
