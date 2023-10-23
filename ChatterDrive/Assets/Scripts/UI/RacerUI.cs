@@ -10,7 +10,7 @@ public class RacerUI : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
 
     public string RacerName { get; private set; }
-
+    //Setup racer UI 
     public void SetUpRacerUI(string position, string name)
     {
         RacerName = name;

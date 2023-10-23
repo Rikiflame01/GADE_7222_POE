@@ -41,8 +41,10 @@ public class ChapterManager : MonoBehaviour
     public void CheckpointReached() //If a checkpoint has been reached delete it from stack and fire a event
     {                               //If the stack is empty fire a stage complete event
         if (chapterStack.IsEmpty) return;
+
         Debug.Log("Player has reached a CP");
         chapterStack.Pop();
+
         //Check after last pop is the Stack is empty
         if (chapterStack.IsEmpty)
         {
@@ -57,6 +59,7 @@ public class ChapterManager : MonoBehaviour
             lapText.text = $"Lap {PlayerLapNum}/3";
             LoadStack();
         }
+        //Increase total index
         Index++;
         OnCheckPointReached?.Invoke(Index);
     }
@@ -79,6 +82,7 @@ public class ChapterManager : MonoBehaviour
 
     private void LoadStack()
     {
+        //Load the stack for player after linked list is empty
         for (int i = 0; i < checkPoints.Length; i++)
         {
             chapterStack.Push(checkPoints[i]);

@@ -10,12 +10,14 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         get
         {
+            //If instance exits return instance
             if (_instance != null)
             {
                 return _instance;
             }
             else
             {
+                //If instance null try find the object
                 _instance = FindObjectOfType<T>();
                 if (_instance != null)
                 {
@@ -23,6 +25,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
                 }
                 else
                 {
+                    //If instance is still null create a new object
                     GameObject obj = new GameObject();
                     _instance = obj.AddComponent<T>();
                     obj.name = typeof(T) + " - [Sigleton]";
@@ -52,6 +55,6 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
     protected virtual void SetupSingletonOnAwake()
     {
-
+        //Later use
     }
 }

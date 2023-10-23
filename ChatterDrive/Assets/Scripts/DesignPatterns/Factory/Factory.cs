@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
+//Different racer types
 public enum RacerType
 {
     Pyro,
@@ -13,12 +14,15 @@ public enum RacerType
     Magman
 }
 
+//Scriptable object instead of a singleton so we can make multiple instances of the basePrefab
 [CreateAssetMenu(fileName = "New AI Factory", menuName = "AI Factory Racer")]
 public class AIRacerFactory: ScriptableObject, IAIRacerFactory
 {
+    //Base racer with their material
     [SerializeField] private GameObject baseRacerPrefab;
     [SerializeField] private Material[] racerMaterials;
 
+    //Create/Instantiate the different racers
     public AIRacerBlizzard CreateBlizzardRacer()
     {
         return new AIRacerBlizzard();
@@ -44,6 +48,7 @@ public class AIRacerFactory: ScriptableObject, IAIRacerFactory
         return new AIRacerPyro();
     }
 
+    //Get the base racer prefab and setup racer in AIRaceHandler
     public GameObject CreateRacer(RacerType type)
     {
         GameObject racerInstance = Instantiate(baseRacerPrefab); 
@@ -53,7 +58,7 @@ public class AIRacerFactory: ScriptableObject, IAIRacerFactory
         return racerInstance;
     }
 }
-
+//Interface for creating different racers
 public interface IAIRacerFactory
 {
     AIRacerPyro CreatePyroRacer();
@@ -64,7 +69,7 @@ public interface IAIRacerFactory
     GameObject CreateRacer(RacerType type);
 }
 
-[Serializable]
+[Serializable] //Racer base class
 public class AIRacerBase
 {
     //Racer Stats
@@ -73,7 +78,7 @@ public class AIRacerBase
     public float RacerSpeed { get; private set; }
     public float RacerAcceleration { get; private set; }
     public float RacerAngularSpeed { get; private set; }
-
+    //Constructor for setting up racer stats
     public AIRacerBase(Color racerColor, float racerSpeed, float racerAcceleration, float racerAngularSpeed, RacerType racerType)
     {
         RacerColor = racerColor;
@@ -85,6 +90,7 @@ public class AIRacerBase
 
 }
 
+//Children of AIRaceBase, constructing the children based on their affinity
 public class AIRacerPyro :AIRacerBase
 {
     //Fire racers fast acceleration and low top speed
