@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class ChapterManager : MonoBehaviour
 {
     //Different checkpoints easier for level design
-    [Header("References: ")]
     public Transform[] checkPoints;
     public RaceHandler raceHandler;
     public RacerUI playerUI;
@@ -20,45 +20,31 @@ public class ChapterManager : MonoBehaviour
     public static event CheckPointComplete OnCheckPointReached;
     public static event CheckPointComplete OnStageComplete;
 
-    //public static event Action 
+    public int PlayerLapNum { get; private set; }
+    public int Index { get; private set; }
 
     private void Awake()
     {
         //Add the checkpoints to the chapterStack
-<<<<<<< Updated upstream
-        for(int i = 0; i < checkPoints.Length; i++)
-        {
-            chapterStack.Push(checkPoints[i]);
-        }
-=======
         LoadStack();
-        PlayerLapNum = 0;
->>>>>>> Stashed changes
         Debug.Log(chapterStack.ToString());
         Debug.Log(chapterStack.Count);
     }
 
     private void Start()
     {
+        PlayerLapNum = 0;
+        //Add player for leaderboard
         raceHandler.AddRacer("Player", Index, playerUI);
     }
 
     public void CheckpointReached() //If a checkpoint has been reached delete it from stack and fire a event
     {                               //If the stack is empty fire a stage complete event
-<<<<<<< Updated upstream
-        chapterStack.Pop();
-        OnCheckPointReached?.Invoke(chapterStack.Count);
-
-        if (chapterStack.IsEmpty) 
-        {
-            Debug.Log("Player has completed scene");
-            OnStageComplete?.Invoke(chapterStack.Count);
-=======
         if (chapterStack.IsEmpty) return;
         Debug.Log("Player has reached a CP");
         chapterStack.Pop();
         //Check after last pop is the Stack is empty
-        if(chapterStack.IsEmpty)
+        if (chapterStack.IsEmpty)
         {
             if (PlayerLapNum >= 3)
             {
@@ -70,32 +56,9 @@ public class ChapterManager : MonoBehaviour
             PlayerLapNum++;
             lapText.text = $"Lap {PlayerLapNum}/3";
             LoadStack();
->>>>>>> Stashed changes
         }
         Index++;
         OnCheckPointReached?.Invoke(Index);
-
-
-        //if (chapterStack.IsEmpty) 
-        //{
-        //    if(PlayerLapNum > 3)
-        //    {
-        //        OnStageComplete?.Invoke(chapterStack.Count);
-        //        return;
-        //    }
-        //    Debug.Log("Player has completed a lap");
-        //    Debug.Log("Player Lap: " + PlayerLapNum);
-        //    PlayerLapNum++;
-        //    lapText.text = $"Lap {PlayerLapNum}/3";
-        //    LoadStack();    
-        //}
-        //else
-        //{
-        //    Debug.Log("Player has reached a CP");
-        //    chapterStack.Pop();
-        //    Index++;
-        //    OnCheckPointReached?.Invoke(Index);
-        //}
     }
 
     public  int GetNumCheckpoints()
@@ -112,6 +75,14 @@ public class ChapterManager : MonoBehaviour
         }
         Debug.Log("Chapter Last value: " + chapterStack.Peek().name);
         return chapterStack.Peek();
+    }
+
+    private void LoadStack()
+    {
+        for (int i = 0; i < checkPoints.Length; i++)
+        {
+            chapterStack.Push(checkPoints[i]);
+        }
     }
 }
 

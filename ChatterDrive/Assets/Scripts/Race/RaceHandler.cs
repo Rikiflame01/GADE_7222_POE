@@ -9,18 +9,10 @@ using UnityEngine;
 public class RaceHandler : MonoBehaviour
 {
     [Header("Testing")]
-<<<<<<< Updated upstream
-    [SerializeField] private List<AIRacerHandler> racers = new List<AIRacerHandler>();
-
-    //Local
-    private int currentHighestIndex;
-    private int currentHighestLapNum;
-=======
     [SerializeField] private Transform leaderBoardContainer;
 
     [SerializeField]
     private List<RacerData> racersList = new List<RacerData>();
->>>>>>> Stashed changes
 
     //Local
     private bool spawned = false;
@@ -29,20 +21,15 @@ public class RaceHandler : MonoBehaviour
     private void OnEnable()
     {
         AIRacerHandler.OnAIReachedWaypoint += HandleRacerCheckpointTriggered;
+        ChapterManager.OnCheckPointReached += HandleRacerCheckpointTriggered;
     }
 
     private void OnDisable()
     {
         AIRacerHandler.OnAIReachedWaypoint -= HandleRacerCheckpointTriggered;
+        ChapterManager.OnCheckPointReached -= HandleRacerCheckpointTriggered;
     }
 
-<<<<<<< Updated upstream
-    private void HandleRacerCheckpointTriggered(int index)
-    {
-        AIRacerHandler tempValue = null;
-
-        if(index > currentHighestIndex)
-=======
     private RacerData GetRacerByName(string racerName)
     {
         foreach (var racer in racersList)
@@ -55,11 +42,11 @@ public class RaceHandler : MonoBehaviour
         return null;
     }
 
-    private void HandlePlayerCheckpointTrigger(int numCheckpoints)
+    private void HandleRacerCheckpointTriggered(int numCheckpoints)
     {
         RacerData playerData = GetRacerByName("Player");
+
         if (playerData != null)
->>>>>>> Stashed changes
         {
             playerData.Index = numCheckpoints;
             SortRacersList();
@@ -67,17 +54,6 @@ public class RaceHandler : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
-        for(int i = 0; i < racers.Count-1; i++)
-        {
-            for(int j = i+1; j < racers.Count; j++)
-            {
-                if (racers[i].Index < racers[j].Index)
-                {
-                    tempValue = racers[i];
-                    racers[i] = racers[j];
-                    racers[j] = tempValue;
-=======
     private void HandleRacerCheckpointTriggered(AIRacerHandler racer, int index)
     {
         RacerData racerData = GetRacerByName(racer.name);
@@ -101,34 +77,11 @@ public class RaceHandler : MonoBehaviour
                     RacerData temp = racersList[j];
                     racersList[j] = racersList[j + 1];
                     racersList[j + 1] = temp;
->>>>>>> Stashed changes
                 }
             }
         }
     }
 
-<<<<<<< Updated upstream
-    /// <summary>
-    /// Add the AIRacer Handlers in AIRacer Spawner to keep track of positions
-    /// </summary>
-    /// <param name="handler"></param>
-    public void AddRacer(AIRacerHandler handler)
-    {
-        racers.Add(handler);
-    }
-
-    private void Update()
-    {
-        if (racers.Count == 0) return;
-
-
-    }
-
-    private void CheckRacersPosition()
-    {
-       //Check however is closest to the last checkpoint
-       
-=======
     public void AddRacer(string racerName, int initialIndex, RacerUI uiElement)
     {
         //Check if UI element null
@@ -156,7 +109,6 @@ public class RaceHandler : MonoBehaviour
         {
             spawnedUIElements[i].SetUpRacerUI((i+1).ToString(), racersList[i].RacerName);
         }
->>>>>>> Stashed changes
     }
 }
 

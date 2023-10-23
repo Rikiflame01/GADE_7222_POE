@@ -12,6 +12,7 @@ public class AIRacerHandler : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private NavMeshAgent racerAgent;
     [SerializeField] private AIRacerFactory racerFactory;
+    [SerializeField] private RacerUI racerUI;
 
     public int LapNum { get; private set; }
     [field: SerializeField] public int Index { get; private set; }
@@ -20,15 +21,8 @@ public class AIRacerHandler : MonoBehaviour
 
     public bool isReached;
 
-<<<<<<< Updated upstream
-    public static event Action<int> OnAIReachedWaypoint;
-    private AIRacerPosition racerPosition;
-=======
     public delegate void WaypointReached(AIRacerHandler handler, int index);
     public static event WaypointReached OnAIReachedWaypoint;
-
-    private Color racerColor;
->>>>>>> Stashed changes
 
     void Start()
     {
@@ -36,7 +30,6 @@ public class AIRacerHandler : MonoBehaviour
         Index = 0;
         racerAgent = GetComponent<NavMeshAgent>();
         waypoints = Waypoints.Instance;
-        racerPosition = new AIRacerPosition();
         //SetupRacerType()
     }
 
@@ -69,10 +62,6 @@ public class AIRacerHandler : MonoBehaviour
             LapNum++;
             waypointIndex = 0;
         }
-
-        racerPosition.lapNum = LapNum;
-        racerPosition.index = waypointIndex;
-
     }
 
     public void SetupRacerType(RacerType racerType)
@@ -99,7 +88,7 @@ public class AIRacerHandler : MonoBehaviour
         }
 
         racerAgent.speed = racerBase.RacerSpeed;
-        racerColor = racerBase.RacerColor;
+        meshRenderer.material.color = racerBase.RacerColor;
         racerAgent.acceleration = racerBase.RacerAcceleration;
         racerAgent.angularSpeed = racerBase.RacerAngularSpeed;
 
@@ -117,22 +106,10 @@ public class AIRacerHandler : MonoBehaviour
         isReached = false;
     }
 
-    public AIRacerPosition GetAIRacerPosition()
+    public RacerUI GetRacerUI()
     {
-<<<<<<< Updated upstream
-        return racerPosition;
-=======
-        racerUI.SetUpRacerUI("0", name);
-        
         return racerUI;
->>>>>>> Stashed changes
     }
 
 }
 
-[Serializable]
-public struct AIRacerPosition
-{
-    public int lapNum;
-    public int index;
-}
