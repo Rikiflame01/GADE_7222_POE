@@ -64,6 +64,7 @@ public class AIRacerHandler : MonoBehaviour
         }
     }
 
+    //Setup racer
     public void SetupRacerType(RacerType racerType)
     {
         AIRacerBase racerBase = null;
