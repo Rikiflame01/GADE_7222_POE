@@ -23,7 +23,7 @@ public class CheckpointUI : MonoBehaviour
     private void Start()
     {
         timer = timePerCheckpoint;
-        chaptersText.text = "Chapters Left: " + chapterManager.GetNumCheckpoints();
+        //chaptersText.text = "Chapters Left: " + chapterManager.GetNumCheckpoints();
     }
 
     //Event subscription and unsubscription
@@ -45,22 +45,22 @@ public class CheckpointUI : MonoBehaviour
     {
         //Show the player time left and round up 
         timer -= Time.deltaTime;
-        timerText.text = "Time left: " + Mathf.Ceil(timer).ToString();
+        //timerText.text = "Time left: " + Mathf.Ceil(timer).ToString();
 
-        if(timer <= 0.01) //If time runs out show lose screen
-        {
-            Debug.Log("Time is up, player is dead");
-            ShowLoseScreen(true);
+        //if(timer <= 0.01) //If time runs out show lose screen
+        //{
+        //    Debug.Log("Time is up, player is dead");
+        //    ShowLoseScreen(true);
             
-            timer = 0;
-        }
+        //    timer = 0;
+        //}
     }
 
     private void OnCheckPointReached(int numCheckpoints)
     {
         //Update Checkpoint UI
-        chaptersText.text = "Checkpoints Left: " + numCheckpoints;
-        timer += timePerCheckpoint;
+        //chaptersText.text = "Checkpoints Left: " + numCheckpoints;
+        //timer += timePerCheckpoint;
     }
 
     private void OnStageComplete(int numCheckpoints)

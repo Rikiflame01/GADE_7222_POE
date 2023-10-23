@@ -20,8 +20,15 @@ public class AIRacerHandler : MonoBehaviour
 
     public bool isReached;
 
+<<<<<<< Updated upstream
     public static event Action<int> OnAIReachedWaypoint;
     private AIRacerPosition racerPosition;
+=======
+    public delegate void WaypointReached(AIRacerHandler handler, int index);
+    public static event WaypointReached OnAIReachedWaypoint;
+
+    private Color racerColor;
+>>>>>>> Stashed changes
 
     void Start()
     {
@@ -54,7 +61,7 @@ public class AIRacerHandler : MonoBehaviour
     {
         waypointIndex++;
         Index++;
-        OnAIReachedWaypoint?.Invoke(Index);
+        OnAIReachedWaypoint?.Invoke(this, Index);
         isReached = true;
 
         if (waypointIndex >= waypoints.GetNumWaypoints())
@@ -92,7 +99,7 @@ public class AIRacerHandler : MonoBehaviour
         }
 
         racerAgent.speed = racerBase.RacerSpeed;
-        meshRenderer.material.color = racerBase.RacerColor;
+        racerColor = racerBase.RacerColor;
         racerAgent.acceleration = racerBase.RacerAcceleration;
         racerAgent.angularSpeed = racerBase.RacerAngularSpeed;
 
@@ -112,7 +119,13 @@ public class AIRacerHandler : MonoBehaviour
 
     public AIRacerPosition GetAIRacerPosition()
     {
+<<<<<<< Updated upstream
         return racerPosition;
+=======
+        racerUI.SetUpRacerUI("0", name);
+        
+        return racerUI;
+>>>>>>> Stashed changes
     }
 
 }
