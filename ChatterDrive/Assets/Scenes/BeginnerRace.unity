@@ -1333,6 +1333,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 126026492}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &126026494 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2061372285410811561, guid: 5043a05e698185c42861750483c364c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 126026492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bb86c50e3ff748b3374e1cdb741b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &128960054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7146697849471969951, guid: 71a220e212af9e14282c0219fb34164a,
@@ -2518,6 +2530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433800489}
   - component: {fileID: 433800490}
+  - component: {fileID: 433800491}
   m_Layer: 0
   m_Name: ReactionZone1
   m_TagString: Untagged
@@ -2561,6 +2574,81 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.868321, y: 3.3955052, z: 8.806335}
   m_Center: {x: -1.6772313, y: 0.2990421, z: 0.5951233}
+--- !u!114 &433800491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433800488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caec306b869d538488875ba4c2d2c763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCrash:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1581698372}
+        m_TargetAssemblyTypeName: Spectator, Assembly-CSharp
+        m_MethodName: BecomeDisappointed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 434117157}
+        m_TargetAssemblyTypeName: Spectator, Assembly-CSharp
+        m_MethodName: BecomeDisappointed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 434117157}
+        m_TargetAssemblyTypeName: Spectator, Assembly-CSharp
+        m_MethodName: BecomeDisappointed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 126026494}
+        m_TargetAssemblyTypeName: Spectator, Assembly-CSharp
+        m_MethodName: BecomeDisappointed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 818869738}
+        m_TargetAssemblyTypeName: Spectator, Assembly-CSharp
+        m_MethodName: BecomeDisappointed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &434117155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2650,6 +2738,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 434117155}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &434117157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2061372285410811561, guid: 5043a05e698185c42861750483c364c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 434117155}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bb86c50e3ff748b3374e1cdb741b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &452872324 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1658481941223826968, guid: 71a220e212af9e14282c0219fb34164a,
@@ -4848,6 +4948,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 818869736}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &818869738 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2061372285410811561, guid: 5043a05e698185c42861750483c364c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 818869736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bb86c50e3ff748b3374e1cdb741b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &824591467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8824086000682419016, guid: 71a220e212af9e14282c0219fb34164a,
@@ -9152,6 +9264,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1581698370}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1581698372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2061372285410811561, guid: 5043a05e698185c42861750483c364c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1581698370}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bb86c50e3ff748b3374e1cdb741b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1595161856
 PrefabInstance:
   m_ObjectHideFlags: 0
