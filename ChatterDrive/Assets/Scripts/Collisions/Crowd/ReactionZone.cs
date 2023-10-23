@@ -9,6 +9,7 @@ public class ReactionZone : MonoBehaviour
     {
         if (other.CompareTag("Crashable"))
         {
+            Debug.Log("Crashed with: " + other.gameObject.name);
             OnCrash.Invoke();
         }
     }
