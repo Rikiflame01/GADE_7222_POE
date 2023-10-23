@@ -8,9 +8,10 @@ using UnityEngine;
 
 public class RaceHandler : MonoBehaviour
 {
-    [Header("Testing")]
+    [Header("Container")]
     [SerializeField] private Transform leaderBoardContainer;
 
+    [Header("Debugging")]
     [SerializeField]
     private List<RacerData> racersList = new List<RacerData>();
 
@@ -18,6 +19,7 @@ public class RaceHandler : MonoBehaviour
     private bool spawned = false;
     private List<RacerUI> spawnedUIElements = new List<RacerUI>();
 
+    //Subscribing and unsubsrcibing to events
     private void OnEnable()
     {
         AIRacerHandler.OnAIReachedWaypoint += HandleRacerCheckpointTriggered;
@@ -30,6 +32,7 @@ public class RaceHandler : MonoBehaviour
         ChapterManager.OnCheckPointReached -= HandleRacerCheckpointTriggered;
     }
 
+    //Get racer data by entering racer name
     private RacerData GetRacerByName(string racerName)
     {
         foreach (var racer in racersList)
@@ -42,6 +45,7 @@ public class RaceHandler : MonoBehaviour
         return null;
     }
 
+    //handle when player has fired an event when they trigger a checkpoint
     private void HandleRacerCheckpointTriggered(int numCheckpoints)
     {
         RacerData playerData = GetRacerByName("Player");
@@ -54,8 +58,10 @@ public class RaceHandler : MonoBehaviour
         }
     }
 
+    //Handle event fired by AIRacerHandler to check the AI position
     private void HandleRacerCheckpointTriggered(AIRacerHandler racer, int index)
     {
+        //Get racer data from AI name
         RacerData racerData = GetRacerByName(racer.name);
         if (racerData != null)
         {
@@ -82,6 +88,7 @@ public class RaceHandler : MonoBehaviour
         }
     }
 
+    //Add racers to a list and instantiate the Racer data class from the parameters
     public void AddRacer(string racerName, int initialIndex, RacerUI uiElement)
     {
         //Check if UI element null
@@ -93,8 +100,10 @@ public class RaceHandler : MonoBehaviour
         racersList.Add(new RacerData(racerName, initialIndex, uiElement));
     }
 
+    //Showing racers position for UX
     private void UpdateRacerPositionsUI()
     {
+        //If no UI elements are spawned populate spawnedUIElements, and show racers in container
         if (!spawned)
         { 
             foreach (RacerData racer in racersList)
@@ -104,7 +113,7 @@ public class RaceHandler : MonoBehaviour
             }
             spawned = true;
         }
-
+        //Change the racers postions on the leaderboard
         for (int i = 0; i < racersList.Count; i++)
         {
             spawnedUIElements[i].SetUpRacerUI((i+1).ToString(), racersList[i].RacerName);
@@ -112,6 +121,7 @@ public class RaceHandler : MonoBehaviour
     }
 }
 
+//Class for the list to oraganise AI racers and player getting their name, index and UI element
 [Serializable]
 public class RacerData
 {
@@ -119,6 +129,7 @@ public class RacerData
     public int Index { get; set; }
     public RacerUI RacerUIElement { get; set; }
 
+    //Constructor for setting up RacerData
     public RacerData(string racerName, int index, RacerUI racerUI)
     {
         RacerName = racerName;

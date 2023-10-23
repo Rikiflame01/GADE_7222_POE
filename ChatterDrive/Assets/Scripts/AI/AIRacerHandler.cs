@@ -20,7 +20,7 @@ public class AIRacerHandler : MonoBehaviour
     public int waypointIndex = 0;
 
     public bool isReached;
-
+    //Event for race handler to update the leaderboard
     public delegate void WaypointReached(AIRacerHandler handler, int index);
     public static event WaypointReached OnAIReachedWaypoint;
 
@@ -41,6 +41,7 @@ public class AIRacerHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Handling AIracer when they reached a checkpoint
         if(other.CompareTag("Checkpoint") && !isReached)
         {
             Debug.Log($"Triggered by {gameObject.name} / {other.name}");
@@ -52,19 +53,23 @@ public class AIRacerHandler : MonoBehaviour
 
     private void RacerReachedCheckpoint()
     {
+        //Increase waypoint index after reaching checkpoint
         waypointIndex++;
         Index++;
+        //Fire event to let the race handler know which AIRacer reached the checkpoint
         OnAIReachedWaypoint?.Invoke(this, Index);
         isReached = true;
 
         if (waypointIndex >= waypoints.GetNumWaypoints())
         {//
+            //Increase AIRacer lap number
             LapNum++;
+            //Waypoint index set to zero so racer can loop
             waypointIndex = 0;    
         }
     }
 
-    //Setup racer
+    //Setup racers navMeshAgent based on their type using the factory types
     public void SetupRacerType(RacerType racerType)
     {
         AIRacerBase racerBase = null;
@@ -88,6 +93,7 @@ public class AIRacerHandler : MonoBehaviour
                 break;
         }
 
+        //Set up the racer agent parameters
         racerAgent.speed = racerBase.RacerSpeed;
         meshRenderer.material.color = racerBase.RacerColor;
         racerAgent.acceleration = racerBase.RacerAcceleration;
@@ -106,7 +112,7 @@ public class AIRacerHandler : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isReached = false;
     }
-
+    //For setting up the AIRacer on the leaderboard
     public RacerUI GetRacerUI()
     {
         return racerUI;
