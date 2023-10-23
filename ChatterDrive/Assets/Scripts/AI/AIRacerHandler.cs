@@ -58,9 +58,9 @@ public class AIRacerHandler : MonoBehaviour
         isReached = true;
 
         if (waypointIndex >= waypoints.GetNumWaypoints())
-        {
+        {//
             LapNum++;
-            waypointIndex = 0;
+            waypointIndex = 0;    
         }
     }
 

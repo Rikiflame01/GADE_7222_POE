@@ -20,10 +20,13 @@ public class CheckpointUI : MonoBehaviour
 
     private float timer;
 
+    //Commented out code is deprecated because of chec being beginner
+
+
     private void Start()
     {
-        timer = timePerCheckpoint;
-        chaptersText.text = "Chapters Left: " + chapterManager.GetNumCheckpoints();
+        //timer = timePerCheckpoint;
+        //chaptersText.text = "Chapters Left: " + chapterManager.GetNumCheckpoints();
     }
 
     //Event subscription and unsubscription
@@ -44,23 +47,23 @@ public class CheckpointUI : MonoBehaviour
     private void Update()
     {
         //Show the player time left and round up 
-        timer -= Time.deltaTime;
-        timerText.text = "Time left: " + Mathf.Ceil(timer).ToString();
+        //timer -= Time.deltaTime;
+        //timerText.text = "Time left: " + Mathf.Ceil(timer).ToString();
 
-        if(timer <= 0.01) //If time runs out show lose screen
-        {
-            Debug.Log("Time is up, player is dead");
-            ShowLoseScreen(true);
+        //if(timer <= 0.01) //If time runs out show lose screen
+        //{
+        //    Debug.Log("Time is up, player is dead");
+        //    ShowLoseScreen(true);
             
-            timer = 0;
-        }
+        //    timer = 0;
+        //}
     }
 
     private void OnCheckPointReached(int numCheckpoints)
     {
         //Update Checkpoint UI
-        chaptersText.text = "Checkpoints Left: " + numCheckpoints;
-        timer += timePerCheckpoint;
+        //chaptersText.text = "Checkpoints Left: " + numCheckpoints;
+        //timer += timePerCheckpoint;
     }
 
     private void OnStageComplete(int numCheckpoints)
@@ -90,9 +93,9 @@ public class CheckpointUI : MonoBehaviour
 
     public void RestartGame()
     {
-        timer = timePerCheckpoint;
+        //timer = timePerCheckpoint;
         SetTimeScale(1);
-        SceneManager.LoadScene(SceneName.CheckpointRace.ToString());
+        SceneManager.LoadScene(SceneName.BeginnerRace.ToString());
     }
     
 }

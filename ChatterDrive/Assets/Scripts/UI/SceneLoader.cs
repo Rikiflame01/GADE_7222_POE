@@ -5,6 +5,7 @@ public enum SceneName
 { 
     MainMenu,
     CheckpointRace,
+    BeginnerRace,
     CheckpointRaceDialogue,
     BeginnerRaceDialogue,
     AdvancedRaceDialogue
@@ -48,6 +49,11 @@ public class SceneLoader : MonoBehaviour
     public void LoadAdvancedDialogueScene()
     {
         LoadScene(SceneName.AdvancedRaceDialogue);
+    }
+
+    public void LoadBeginnerRace()
+    {
+        LoadScene(SceneName.BeginnerRace);             
     }
 
     public void QuitGame()

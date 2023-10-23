@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AdvancedRaceDialogue.unity
     guid: 5013ea7c60a46f34495c53dfc90ea384
+  - enabled: 1
+    path: Assets/Scenes/BeginnerRace.unity
+    guid: 098113084b5636341a19e075a62b9411
   m_configObjects: {}
