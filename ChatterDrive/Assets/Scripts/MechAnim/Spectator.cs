@@ -15,9 +15,7 @@ public class ClappingState : SpectatorState
 
     public override void Handle()
     {
-        // Crossfade to Clapping animation
         spectator.Animator.CrossFade("Clapping", 0.1f);
-        // Transition to another state after a random duration
         spectator.ChangeStateAfterRandomDuration();
     }
 }
@@ -31,9 +29,7 @@ public class CheeringState : SpectatorState
 
     public override void Handle()
     {
-        // Crossfade to Cheering animation
         spectator.Animator.CrossFade("Cheering", 0.1f);
-        // Transition to another state after a random duration
         spectator.ChangeStateAfterRandomDuration();
     }
 }
@@ -47,9 +43,7 @@ public class DissapointedState : SpectatorState
 
     public override void Handle()
     {
-        // Crossfade to Dissapointed animation
         spectator.Animator.CrossFade("Dissapointed", 0.1f);
-        // Transition to another state after a random duration
         spectator.ChangeStateAfterRandomDuration();
     }
 }
@@ -62,9 +56,7 @@ public class Spectator : MonoBehaviour
     private void Start()
     {
         Animator = GetComponent<Animator>();
-        // Randomize initial animation offset
         Animator.CrossFade("Clapping", 0.1f, -1, Random.Range(0f, 1f));
-        // Set initial state
         SetState(new ClappingState(this));
     }
 
@@ -76,13 +68,13 @@ public class Spectator : MonoBehaviour
 
     public void ChangeStateAfterRandomDuration()
     {
-        float randomDuration = Random.Range(8f, 20f); // Adjusted duration for smoother transitions
+        float randomDuration = Random.Range(8f, 20f);
         Invoke("RandomizeState", randomDuration);
     }
 
     private void RandomizeState()
     {
-        int randomState = Random.Range(0, 3); // Assuming 3 states for simplicity
+        int randomState = Random.Range(0, 3);
         switch (randomState)
         {
             case 0:
@@ -95,5 +87,10 @@ public class Spectator : MonoBehaviour
                 SetState(new DissapointedState(this));
                 break;
         }
+    }
+
+    public void BecomeDisappointed()
+    {
+        SetState(new DissapointedState(this));
     }
 }

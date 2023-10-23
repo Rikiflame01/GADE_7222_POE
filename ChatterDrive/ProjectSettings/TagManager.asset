@@ -8,6 +8,7 @@ TagManager:
   - SpeedBoost
   - Ground
   - AI
+  - Crashable
   layers:
   - Default
   - TransparentFX
