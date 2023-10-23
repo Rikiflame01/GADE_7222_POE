@@ -16,6 +16,17 @@ public class PlayerCollisions : MonoBehaviour
         {
             checkpointUI.ShowLoseScreen(true);
         }
+        if (!collision.gameObject.CompareTag("RaceTrack"))
+        {
+            // This is a crash. Handle accordingly.
+            HandleCrash();
+        }
+
+        void HandleCrash()
+        {
+            // Whatever you want to happen when the player crashes.
+            Debug.Log("Player Crashed!");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +47,5 @@ public class PlayerCollisions : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
-        
     }
 }
