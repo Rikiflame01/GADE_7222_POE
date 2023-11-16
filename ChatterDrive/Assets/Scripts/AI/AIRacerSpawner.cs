@@ -12,6 +12,7 @@ public class AIRacerSpawner : MonoBehaviour
 
     [Header("Settings: ")]
     [SerializeField] private SpawnObject[] spawnObjects;
+    [SerializeField] private bool advancedSpawner = false;
 
     void Start() // Spawn the AIRacers from the factory base prefab
     {
@@ -23,6 +24,7 @@ public class AIRacerSpawner : MonoBehaviour
             racerInstance.transform.position = spawnObjects[i].spawnPoint.position;
             racerInstance.GetComponent<NavMeshAgent>().enabled = true;
             AIRacerHandler racer = racerInstance.GetComponent<AIRacerHandler>();
+            racer.advanced = advancedSpawner;
             //Addd racer to race handler for the leaderboard
             raceHandler.AddRacer(racerInstance.name, racer.Index, racer.GetRacerUI());
         }

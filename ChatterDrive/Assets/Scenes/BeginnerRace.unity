@@ -1904,11 +1904,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeginnerRaceUI
       objectReference: {fileID: 0}
-    - target: {fileID: 4700552388295002478, guid: b18781f53e90fad4e8d34b6eebb490d1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5128903368607500062, guid: b18781f53e90fad4e8d34b6eebb490d1,
         type: 3}
       propertyPath: chapterManager
@@ -1916,34 +1911,9 @@ PrefabInstance:
       objectReference: {fileID: 999116800}
     - target: {fileID: 7819499852276342214, guid: b18781f53e90fad4e8d34b6eebb490d1,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819499852276342214, guid: b18781f53e90fad4e8d34b6eebb490d1,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1392349141}
-    - target: {fileID: 7819499852276342214, guid: b18781f53e90fad4e8d34b6eebb490d1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819499852276342214, guid: b18781f53e90fad4e8d34b6eebb490d1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819499852276342214, guid: b18781f53e90fad4e8d34b6eebb490d1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneLoader, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819499852276342214, guid: b18781f53e90fad4e8d34b6eebb490d1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7940704768086106415, guid: b18781f53e90fad4e8d34b6eebb490d1,
         type: 3}
       propertyPath: m_LocalPosition.x

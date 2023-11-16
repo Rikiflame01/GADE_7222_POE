@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class ADTGraph : MonoBehaviour
+public class ADTGraph : Singleton<ADTGraph>
 {
     public Nodes[] nodes;
 
@@ -11,7 +11,11 @@ public class ADTGraph : MonoBehaviour
 
     public List<GraphNode> debugList = new List<GraphNode>();
 
+    private bool randomize;
+
     private Graph graph;
+
+    private int currentIndex = 0;
 
     private void Awake()
     {
@@ -19,7 +23,6 @@ public class ADTGraph : MonoBehaviour
         for (int i = 0; i < nodes.Length; i++)
         {
             nodeList.InsertAtEnd(new GraphNode(nodes[i].name, i, nodes[i].nodeTransform, nodes[i].diverges));
-            Debug.Log(nodeList.GetAtIndex(i).nodeTransform.name);
         }
 
         graph = new Graph(nodeList);
@@ -39,15 +42,25 @@ public class ADTGraph : MonoBehaviour
         Debug.Log(graph.ToString());
     }
 
-    public Transform GetNextWaypoint(int index)
+    public Transform GetNextWaypoint(AIRacerHandler racer)
     {
-        return graph.GetNextNode(index).nodeTransform;
+
+        Transform nextWaypoint = graph.GetNextNode(racer).nodeTransform;
+        return nextWaypoint;
+    }
+
+    public int GetNumNodes()
+    {
+        Debug.Log(nodeList.Size());
+        return nodeList.Size();
     }
 }
 
 public class Graph
 {
     LinkedListOne<GraphNode> nodeList = new LinkedListOne<GraphNode>();
+
+    private GraphNode previousNode = null;
 
     public Graph(LinkedListOne<GraphNode> nodeList)
     {
@@ -62,29 +75,43 @@ public class Graph
         first.neighbors.InsertAtEnd(second);
     }
 
-    public GraphNode GetNextNode(int index)
+    public GraphNode GetNextNode(AIRacerHandler racer)
     {
-        GraphNode currentNode = nodeList.GetAtIndex(index);
-
-        if (currentNode.hasNeighbours)
+        if(racer.waypointIndex == 0)
         {
-            int randomNum = Random.Range(1, 10);
+            return nodeList.GetAtIndex(0);
+        }
 
-            if (randomNum > 5)
+        GraphNode currentNode = nodeList.GetAtIndex(racer.waypointIndex);
+        GraphNode previousNode = nodeList.GetAtIndex(racer.waypointIndex - 1);
+
+        if(previousNode.hasNeighbours)
+        {
+            bool second = (Random.Range(0, 10)) > 4;
+            Debug.Log($"Previous Node Index: " + previousNode.index);
+            racer.waypointIndex = previousNode.index + 2;
+            if (second)
             {
-                return currentNode.neighbors.GetAtIndex(1);
+                
+                return previousNode.neighbors.GetAtIndex(1);
             }
             else
             {
-                return currentNode.neighbors.GetAtIndex(0);
+                return previousNode.neighbors.GetAtIndex(0);
             }
+
+            
         }
         else
         {
-            return nodeList.GetAtIndex(index + 1);
+            return currentNode;
         }
-        
+
+
+
     }
+
+
 
     public override string ToString()
     {

@@ -13,9 +13,11 @@ public class AIRacerHandler : MonoBehaviour
     [SerializeField] private NavMeshAgent racerAgent;
     [SerializeField] private AIRacerFactory racerFactory;
     [SerializeField] private RacerUI racerUI;
+    [SerializeField] private ADTGraph graph;
 
     public int LapNum { get; private set; }
     [field: SerializeField] public int Index { get; private set; }
+    [field: SerializeField] public bool advanced { get; set; }
     //Debugging
     public int waypointIndex = 0;
 
@@ -29,6 +31,12 @@ public class AIRacerHandler : MonoBehaviour
         LapNum = 0;
         Index = 0;
         racerAgent = GetComponent<NavMeshAgent>();
+        if (advanced)
+        {
+            graph = ADTGraph.Instance;
+            SetAdvancedRacerPos();
+            return;
+        }
         waypoints = Waypoints.Instance;
         //SetupRacerType()
     }
@@ -36,7 +44,21 @@ public class AIRacerHandler : MonoBehaviour
     void Update()
     {
         //For testing use singleton reference
-        racerAgent.SetDestination(waypoints.GetNextWaypoint(waypointIndex).position);
+        if(advanced)
+        {
+
+        }
+        else
+        {
+            racerAgent.SetDestination(waypoints.GetNextWaypoint(waypointIndex).position);
+        }
+        
+    }
+
+    private void SetAdvancedRacerPos()
+    {
+        racerAgent.SetDestination(graph.GetNextWaypoint(this).position);
+        Debug.Log("New index: " + waypointIndex);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,13 +82,30 @@ public class AIRacerHandler : MonoBehaviour
         OnAIReachedWaypoint?.Invoke(this, Index);
         isReached = true;
 
+        if(advanced)
+        {
+            if (waypointIndex >= graph.GetNumNodes())
+            {
+                IncreaseLapCount();
+            }
+            SetAdvancedRacerPos();
+            return;
+        }
+
+        
+
         if (waypointIndex >= waypoints.GetNumWaypoints())
         {//
-            //Increase AIRacer lap number
-            LapNum++;
-            //Waypoint index set to zero so racer can loop
-            waypointIndex = 0;    
+            IncreaseLapCount();    
         }
+    }
+
+    private void IncreaseLapCount()
+    {
+        //Increase AIRacer lap number
+        LapNum++;
+        //Waypoint index set to zero so racer can loop
+        waypointIndex = 0;
     }
 
     //Setup racers navMeshAgent based on their type using the factory types
@@ -109,7 +148,7 @@ public class AIRacerHandler : MonoBehaviour
     //This method is for the object triggering twice when entering a checkpoint which lead to weird beaviour
     IEnumerator DisableRacerTrigger()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         isReached = false;
     }
     //For setting up the AIRacer on the leaderboard
