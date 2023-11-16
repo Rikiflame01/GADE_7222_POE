@@ -5,45 +5,37 @@ using UnityEngine;
 
 public class ADTGraph : MonoBehaviour
 {
-    List<GraphNode> nodeList = new List<GraphNode>();
+    public Nodes[] nodes;
+
+    LinkedListOne<GraphNode> nodeList = new LinkedListOne<GraphNode>();
     ArrayList nodeList1 = new ArrayList();
+
+    public List<GraphNode> debugList = new List<GraphNode>();
 
     private void Awake()
     {
-        //Adding nodes with adjacency matrix
-        nodeList.Add(new GraphNode("A", 0));
-        nodeList.Add(new GraphNode("B", 1));
-        nodeList.Add(new GraphNode("C", 2));
-        nodeList.Add(new GraphNode("D", 3));
-        nodeList.Add(new GraphNode("E", 4));
-
-        Graph g = new Graph(nodeList);
-        //Adding the links check in workbook
-        g.addUndirectedEdge(0, 1);
-        g.addUndirectedEdge(0, 2);
-        g.addUndirectedEdge(0, 3);
-        //B to E
-        g.addUndirectedEdge(1,4);
-        g.addUndirectedEdge(2,3);
-        g.addUndirectedEdge(3,4);
-        Debug.Log(g.ToString());
-
         //Adding nodes with adjacency list
-        nodeList1.Add(new GraphNode("A", 0));
-        nodeList1.Add(new GraphNode("B", 1));
-        nodeList1.Add(new GraphNode("C", 2));
-        nodeList1.Add(new GraphNode("D", 3));
-        nodeList1.Add(new GraphNode("E", 4));
+        for (int i = 0; i < nodes.Length; i++)
+        {
+            nodeList.InsertAtEnd(new GraphNode(nodes[i].name, i, nodes[i].nodeTransform, nodes[i].diverges));
+            Debug.Log(nodeList.GetAtIndex(i).nodeTransform.name);
+        }
 
-        Graph g2 = new Graph(nodeList1);
-        g2.AddUndirectedEdge(0, 1);
-        g2.AddUndirectedEdge(0, 2);
-        g2.AddUndirectedEdge(0, 3);
-        //B to E
-        g2.AddUndirectedEdge(1, 4);
-        g2.AddUndirectedEdge(2, 3);
-        g2.AddUndirectedEdge(3, 4);
-        Debug.Log(g2.toString());
+        Graph graph = new Graph(nodeList);
+
+        //Add the edges according to diagram
+        graph.AddDirectedEdge(0, 1);
+        graph.AddDirectedEdge(1, 2);
+        graph.AddDirectedEdge(1, 3);
+        graph.AddDirectedEdge(2, 4);
+        graph.AddDirectedEdge(3, 4);
+        graph.AddDirectedEdge(4, 5);
+        graph.AddDirectedEdge(5, 6);
+        graph.AddDirectedEdge(5, 7);
+        graph.AddDirectedEdge(6, 8);
+        graph.AddDirectedEdge(7, 8);
+        graph.AddDirectedEdge(8, 0);
+        Debug.Log(graph.ToString());
 
 
     }
@@ -51,106 +43,106 @@ public class ADTGraph : MonoBehaviour
 
 public class Graph
 {
-    List<GraphNode> nodeList = new List<GraphNode>();
+    //List<GraphNode> nodeList = new List<GraphNode>();
     ArrayList nodeList1 = new ArrayList();
+    LinkedListOne<GraphNode> nodeList = new LinkedListOne<GraphNode>();
 
-    public Graph(ArrayList nodeList1)
+    public Graph(LinkedListOne<GraphNode> nodeList)
     {
-        this.nodeList1 = nodeList1;
-    }
-
-    public void AddUndirectedEdge(int i, int j)
-    {
-        GraphNode first = (GraphNode)nodeList1[i];
-        GraphNode second = (GraphNode)nodeList1[j];
-        //Undriected edge
-        first.neighbors.Add(second);
-        second.neighbors.Add(first);
+        this.nodeList = nodeList;
     }
 
     public void AddDirectedEdge(int i, int j)
     {         
-        GraphNode first = (GraphNode)nodeList1[i];
-        GraphNode second = (GraphNode)nodeList1[j];
+        GraphNode first = nodeList.GetAtIndex(i);
+        GraphNode second = nodeList.GetAtIndex(j);
         //Directed edge
-        first.neighbors.Add(second);
-    }
-
-
-    int[,] adjacencyMatrix;
-
-    public Graph(List<GraphNode> nodeList)
-    {
-        this.nodeList = nodeList;
-        adjacencyMatrix = new int[nodeList.Count, nodeList.Count];
-    }
-
-    public void addUndirectedEdge(int i, int j)
-    {
-        adjacencyMatrix[i, j] = 1;
-        adjacencyMatrix[j, i] = 1;
-    }
-
-    public void addDirectedEdge(int i, int j)
-    {
-        adjacencyMatrix[i, j] = 1;
+        first.neighbors.InsertAtEnd(second);
     }
 
     public override string ToString()
     {
         StringBuilder s = new StringBuilder();
-        s.Append(" ");
-        for (int i = 0; i < nodeList.Count; i++)
+        for(int i = 0; i < nodeList.Size(); i++)
         {
-            s.Append(nodeList[i].name + " ");
-        }
-        s.AppendLine();
-        for (int i = 0; i < nodeList.Count; i++)
-        {
-            s.Append(nodeList[i].name + " ");
-            for (int j = 0; j < nodeList.Count; j++)
+            s.Append(nodeList.GetAtIndex(i).name + ": ");
+            for(int j = 0; j < nodeList.GetAtIndex(i).neighbors.Size(); j++)
             {
-                s.Append(adjacencyMatrix[i, j] + " ");
+                if( j == nodeList.GetAtIndex(i).neighbors.Size() - 1)
+                {
+                    s.Append(nodeList.GetAtIndex(i).neighbors.GetAtIndex(j).name);
+                }
+                else
+                {
+                    s.Append(nodeList.GetAtIndex(i).neighbors.GetAtIndex(j).name + " -> ");
+                }   
             }
-            s.AppendLine();
+            s.Append("\n");
         }
         return s.ToString();
     }
 
-    public string toString()
-    {
-        //Print the adjacency list
-        StringBuilder s = new StringBuilder();
-        for(int i = 0; i < nodeList1.Count;i++)
-        {
-            s.Append(((GraphNode)nodeList1[i]).name + ": ");
-            for(int j = 0; j < ((GraphNode)nodeList1[i]).neighbors.Count; j++)
-            {
-                s.AppendLine();
-                if(j == ((GraphNode)nodeList1[i]).neighbors.Count - 1)
-                {
-                    s.Append(" " +((GraphNode)nodeList1[i]).neighbors[j]);
-                    break;
-                }
-                s.Append(((GraphNode)nodeList1[i]).neighbors[j].ToString() + " ");
-            }
-        }
-        return s.ToString();
-    }
+    #region Adjacency List BFS
+    //BFS Internal
+    //void BFSVisitForList(GraphNode node)
+    //{
+    //    LinkedList<GraphNode> queue = new LinkedList<GraphNode>();
+    //    queue.AddFirst(node);
+    //    while(queue.Count != 0)
+    //    {
+    //        GraphNode currentNode = queue.First.Value;
+    //        queue.RemoveFirst();
+    //        currentNode.isVisited = true;
+    //        Debug.Log(currentNode.name + " ");
+
+    //        foreach(GraphNode neighbour in currentNode.neighbors)
+    //        {
+    //            if(!neighbour.isVisited)
+    //            {
+    //                queue.AddLast(neighbour);
+    //                neighbour.isVisited = true;
+    //            }
+    //        }
+    //    }
+    //}
+
+    //public void BFSForList()
+    //{
+    //    foreach(GraphNode node in nodeList1)
+    //    {
+    //        if (!node.isVisited)
+    //        {
+    //            BFSVisitForList(node);
+    //        }
+    //    }
+    //}
+    #endregion
+
 }
 
 public class GraphNode
 {
     public string name;
+    public Transform nodeTransform;
     public int index;
+    public bool hasNeighbours = false;
 
-    public ArrayList neighbors = new ArrayList();
+    public LinkedListOne<GraphNode> neighbors = new LinkedListOne<GraphNode>();
 
-    public GraphNode(string name, int index)
+    public GraphNode(string name, int index, Transform nodeTransform, bool hasNeigbours)
     {
         this.name = name;
         this.index = index;
+        this.nodeTransform = nodeTransform;
+        this.hasNeighbours = hasNeigbours;
     }
 
+}
+[System.Serializable]
+public struct Nodes
+{
+    public string name;
+    public Transform nodeTransform;
+    public bool diverges;
 }
 

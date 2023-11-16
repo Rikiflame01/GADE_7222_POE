@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [Serializable]
@@ -111,13 +112,17 @@ public class LinkedListOne<T>
     {
         NodeOne<T> currentNode = Start;
 
+        if(index == 0)
+        {
+            return Start.Data;
+        }
+
         if (IsEmpty() || index > size + 1)
         {
             //Will return null
             currentNode = null;
             return currentNode.Data;
         }
-        
 
         for(int i = 0; i < index; i++)
         {
