@@ -8,9 +8,10 @@ public class ADTGraph : MonoBehaviour
     public Nodes[] nodes;
 
     LinkedListOne<GraphNode> nodeList = new LinkedListOne<GraphNode>();
-    ArrayList nodeList1 = new ArrayList();
 
     public List<GraphNode> debugList = new List<GraphNode>();
+
+    private Graph graph;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class ADTGraph : MonoBehaviour
             Debug.Log(nodeList.GetAtIndex(i).nodeTransform.name);
         }
 
-        Graph graph = new Graph(nodeList);
+        graph = new Graph(nodeList);
 
         //Add the edges according to diagram
         graph.AddDirectedEdge(0, 1);
@@ -36,15 +37,16 @@ public class ADTGraph : MonoBehaviour
         graph.AddDirectedEdge(7, 8);
         graph.AddDirectedEdge(8, 0);
         Debug.Log(graph.ToString());
+    }
 
-
+    public Transform GetNextWaypoint(int index)
+    {
+        return graph.GetNextNode(index).nodeTransform;
     }
 }
 
 public class Graph
 {
-    //List<GraphNode> nodeList = new List<GraphNode>();
-    ArrayList nodeList1 = new ArrayList();
     LinkedListOne<GraphNode> nodeList = new LinkedListOne<GraphNode>();
 
     public Graph(LinkedListOne<GraphNode> nodeList)
@@ -58,6 +60,30 @@ public class Graph
         GraphNode second = nodeList.GetAtIndex(j);
         //Directed edge
         first.neighbors.InsertAtEnd(second);
+    }
+
+    public GraphNode GetNextNode(int index)
+    {
+        GraphNode currentNode = nodeList.GetAtIndex(index);
+
+        if (currentNode.hasNeighbours)
+        {
+            int randomNum = Random.Range(1, 10);
+
+            if (randomNum > 5)
+            {
+                return currentNode.neighbors.GetAtIndex(1);
+            }
+            else
+            {
+                return currentNode.neighbors.GetAtIndex(0);
+            }
+        }
+        else
+        {
+            return nodeList.GetAtIndex(index + 1);
+        }
+        
     }
 
     public override string ToString()
@@ -81,42 +107,6 @@ public class Graph
         }
         return s.ToString();
     }
-
-    #region Adjacency List BFS
-    //BFS Internal
-    //void BFSVisitForList(GraphNode node)
-    //{
-    //    LinkedList<GraphNode> queue = new LinkedList<GraphNode>();
-    //    queue.AddFirst(node);
-    //    while(queue.Count != 0)
-    //    {
-    //        GraphNode currentNode = queue.First.Value;
-    //        queue.RemoveFirst();
-    //        currentNode.isVisited = true;
-    //        Debug.Log(currentNode.name + " ");
-
-    //        foreach(GraphNode neighbour in currentNode.neighbors)
-    //        {
-    //            if(!neighbour.isVisited)
-    //            {
-    //                queue.AddLast(neighbour);
-    //                neighbour.isVisited = true;
-    //            }
-    //        }
-    //    }
-    //}
-
-    //public void BFSForList()
-    //{
-    //    foreach(GraphNode node in nodeList1)
-    //    {
-    //        if (!node.isVisited)
-    //        {
-    //            BFSVisitForList(node);
-    //        }
-    //    }
-    //}
-    #endregion
 
 }
 
