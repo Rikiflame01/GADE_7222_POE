@@ -1,18 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum SceneName
-{ 
-    MainMenu,
-    BeginnerRace,
-    CheckpointRace,
-    AdvancedRace,
-    CheckpointRaceDialogue,
-    BeginnerRaceDialogue,
-    AdvancedRaceDialogue
-}
-
-
 public class SceneLoader : MonoBehaviour
 {
     private SceneName scene;
@@ -65,7 +53,7 @@ public class SceneLoader : MonoBehaviour
 
     public void QuitGame()
     {
-        //Function for quitting the game
+
         Application.Quit();
     }
 }

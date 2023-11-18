@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
+using UnityEngine.SceneManagement;
 
 public class SFXManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class SFXManager : MonoBehaviour
 
     void Awake()
     {
+        SceneChangeNotifier.OnSceneChanged += HandleSceneChanged;
         if (Instance == null)
         {
             Instance = this;
@@ -28,14 +31,59 @@ public class SFXManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (true)
+    }
+    private void OnDisable()
+    {
+        SceneChangeNotifier.OnSceneChanged -= HandleSceneChanged;
+    }
+
+    private void HandleSceneChanged(Scene newScene)
+    {
+        Debug.Log("Scene changed to " + newScene.name);
+        SwitchOnSceneLoad();
+    }
+
+    private void SwitchOnSceneLoad()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+
+        SceneName currentSceneEnum;
+        if (Enum.TryParse(sceneName, out currentSceneEnum))
         {
-            SFXManager.Instance.PlaySound("GameMusic");
+            switch (currentSceneEnum)
+            {
+                case SceneName.MainMenu:
+                    PlaySound("MMMusic");
+                    break;
+                case SceneName.BeginnerRace:
+                    // PlaySound for BeginnerRace is not yet added
+                    break;
+                case SceneName.CheckpointRace:
+                    // PlaySound for CheckpointRace is not yet added
+                    break;
+                case SceneName.AdvancedRace:
+                    PlaySound("AdvancedSceneMusic");
+                    break;
+                case SceneName.CheckpointRaceDialogue:
+                    // PlaySound for CheckpointRaceDialogue is not yet added
+                    break;
+                case SceneName.BeginnerRaceDialogue:
+                    // PlaySound for BeginnerRaceDialogue is not yet added
+                    break;
+                case SceneName.AdvancedRaceDialogue:
+                    // PlaySound for AdvancedRaceDialogue is not yet added
+                    break;
+                default:
+                    // Handle any undefined scenes here Mr.M
+                    break;
+            }
         }
     }
 
     public void PlaySound(string soundName)
     {
+        audioSource.Stop(); // Stop any currently playing audio
         AudioClip clip = soundMap.Get(soundName);
         if (clip != null)
         {
