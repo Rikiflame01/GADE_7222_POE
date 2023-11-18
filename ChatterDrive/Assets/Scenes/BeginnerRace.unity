@@ -14305,6 +14305,7 @@ MonoBehaviour:
     spawnPoint: {fileID: 591344236}
   - racerType: 4
     spawnPoint: {fileID: 1440281644}
+  advancedSpawner: 0
 --- !u!4 &2145939403
 Transform:
   m_ObjectHideFlags: 0

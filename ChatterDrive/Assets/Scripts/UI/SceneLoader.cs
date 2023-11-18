@@ -4,8 +4,9 @@ using UnityEngine.SceneManagement;
 public enum SceneName
 { 
     MainMenu,
-    CheckpointRace,
     BeginnerRace,
+    CheckpointRace,
+    AdvancedRace,
     CheckpointRaceDialogue,
     BeginnerRaceDialogue,
     AdvancedRaceDialogue
@@ -46,9 +47,15 @@ public class SceneLoader : MonoBehaviour
         LoadScene(SceneName.BeginnerRaceDialogue);
     }
 
+    public void LoadAdvancedScene()
+    {
+        LoadScene(SceneName.AdvancedRace);
+    }
+
     public void LoadAdvancedDialogueScene()
     {
         LoadScene(SceneName.AdvancedRaceDialogue);
+
     }
 
     public void LoadBeginnerRace()
