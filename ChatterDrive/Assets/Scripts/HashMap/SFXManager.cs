@@ -39,7 +39,6 @@ public class SFXManager : MonoBehaviour
 
     private void HandleSceneChanged(Scene newScene)
     {
-        Debug.Log("Scene changed to " + newScene.name);
         SwitchOnSceneLoad();
     }
 

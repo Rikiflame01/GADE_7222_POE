@@ -29,14 +29,13 @@ public class CustomHashmap<TKey, TValue>
         int index = GetBucketIndex(key);
         var keyValue = new KeyValue<TKey, TValue>(key, value); // Create KeyValue pair
         buckets[index].InsertAtEnd(keyValue); // Pass KeyValue pair directly
-        // Note: This does not handle collisions by checking existing keys. But it should be fine for the sake of this project.
     }
 
     public TValue Get(TKey key)
     {
-        int index = GetBucketIndex(key);
+        int index = GetBucketIndex(key); // Get index of bucket
         var currentNode = buckets[index].Start;
-        while (currentNode != null)
+        while (currentNode != null) // Iterate through bucket until the required key is found (Collision handling)
         {
             if (currentNode.Data.Key.Equals(key))
             {
