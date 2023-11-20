@@ -34,6 +34,7 @@ public class ChapterManager : MonoBehaviour
     {
         PlayerLapNum = 0;
         //Add player for leaderboard
+        if (raceHandler == null) return;
         raceHandler.AddRacer("Player", Index, playerUI);
     }
 
@@ -55,7 +56,7 @@ public class ChapterManager : MonoBehaviour
             Debug.Log("Player has completed a lap");
             Debug.Log("Player Lap: " + PlayerLapNum);
             PlayerLapNum++;
-            lapText.text = $"Lap {PlayerLapNum}/3";
+            if(lapText) lapText.text = $"Lap {PlayerLapNum}/3";
             LoadStack();
         }
         //Increase total index

@@ -3796,6 +3796,7 @@ MonoBehaviour:
   timerText: {fileID: 280345185}
   chapterManager: {fileID: 1032609380}
   timePerCheckpoint: 10
+  showCheckpointUI: 1
   loseScreen: {fileID: 818682572}
   winScreen: {fileID: 2076904028}
 --- !u!1001 &1065444673
