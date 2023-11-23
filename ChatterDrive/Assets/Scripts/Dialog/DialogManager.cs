@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
 
     private ADTQueue<DialogueItem> dialogueQueue;
     private Dictionary<Speaker, Image> speakerPortraitsCache;
+    SFXManager SFXManager;
 
     #region UnityMethods
     void Start()
@@ -88,6 +89,7 @@ public class DialogueManager : MonoBehaviour
     #region PublicMethods
     public void DisplayNextDialogue()
     {
+        SFXManager.Instance.PlaySound("NextDialog");
         try
         {
             DialogueItem item = dialogueQueue.Dequeue();

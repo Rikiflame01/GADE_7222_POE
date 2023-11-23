@@ -19,6 +19,8 @@ public class CheckpointUI : MonoBehaviour
     public GameObject loseScreen;
     public GameObject winScreen;
 
+    SFXManager SFXManager;
+
     private float timer;
     private int numCheckpoints;
 
@@ -87,6 +89,7 @@ public class CheckpointUI : MonoBehaviour
 
     private void ShowWinScreen(bool show)
     {
+        SFXManager.Instance.PlaySound("Win");
         winScreen.SetActive(show);
     }
 

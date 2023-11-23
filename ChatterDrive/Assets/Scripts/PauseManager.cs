@@ -5,6 +5,7 @@ using System;
 public class PauseManager : MonoBehaviour
 {
     public static event Action<bool> PauseCanvasTrigger; 
+    SFXManager SFXManager;
 
     private SceneName[] pausableScenes = new SceneName[]
     {
@@ -24,6 +25,7 @@ public class PauseManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            SFXManager.Instance.PlaySound("Pause");
             TogglePause();
         }
     }
