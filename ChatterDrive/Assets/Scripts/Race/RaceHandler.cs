@@ -94,7 +94,6 @@ public class RaceHandler : MonoBehaviour
         //Check if UI element null
         if (uiElement == null)
         {
-            Debug.LogError($"NUll UI element from {racerName}");
             return;
         }
         racersList.Add(new RacerData(racerName, initialIndex, uiElement));
