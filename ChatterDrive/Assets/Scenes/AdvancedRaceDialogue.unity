@@ -1315,7 +1315,7 @@ PrefabInstance:
     - target: {fileID: 5105222412551705180, guid: ad002485c9666334a8bfef8dd1ffd25c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: DiaglogNext
+      value: DialogNext
       objectReference: {fileID: 0}
     - target: {fileID: 5105222412551705180, guid: ad002485c9666334a8bfef8dd1ffd25c,
         type: 3}
