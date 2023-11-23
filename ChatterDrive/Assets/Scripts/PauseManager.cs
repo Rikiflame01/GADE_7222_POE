@@ -28,7 +28,7 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void TogglePause()
+    public void TogglePause()
     {
         if (IsCurrentScenePausable())
         {

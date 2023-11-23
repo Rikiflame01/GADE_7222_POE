@@ -1,22 +1,31 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    private SceneName scene;
+    public FadeManager fadeManager;
 
-    //Basic implementation of a scene loader
-
-    public void LoadScene(SceneName sceneName) // Load a scene using enums
+    private void Awake()
     {
-        Time.timeScale = 1f;
-        scene = sceneName;
-        SceneManager.LoadScene(scene.ToString());
+        fadeManager = FindObjectOfType<FadeManager>();
+    }
+    public void LoadScene(SceneName sceneName)
+    {
+        StartCoroutine(LoadSceneAfterFade(sceneName));
     }
 
-    //Functions for loading various scenes 
+    private IEnumerator LoadSceneAfterFade(SceneName sceneName)
+    {
+        fadeManager.FadeOut();
+
+        yield return new WaitForSeconds(fadeManager.fadeDuration);
+
+        SceneManager.LoadScene(sceneName.ToString());
+    }
+
     public void LoadMainMenu()
-    {  
+    {
         LoadScene(SceneName.MainMenu);
     }
 
@@ -43,17 +52,16 @@ public class SceneLoader : MonoBehaviour
     public void LoadAdvancedDialogueScene()
     {
         LoadScene(SceneName.AdvancedRaceDialogue);
-
     }
 
     public void LoadBeginnerRace()
     {
-        LoadScene(SceneName.BeginnerRace);             
+        LoadScene(SceneName.BeginnerRace);
     }
 
     public void QuitGame()
     {
-
         Application.Quit();
     }
 }
+
