@@ -12,6 +12,8 @@ public class ChapterManager : MonoBehaviour
     public RacerUI playerUI;
     public TMP_Text lapText;
 
+    public bool isCheckpointRace = false;
+
     private ChapterStack<Transform> chapterStack = new ChapterStack<Transform>();
 
     //Events
@@ -48,6 +50,12 @@ public class ChapterManager : MonoBehaviour
         //Check after last pop is the Stack is empty
         if (chapterStack.IsEmpty)
         {
+            if(isCheckpointRace)
+            {
+                OnStageComplete?.Invoke(chapterStack.Count);
+                return;
+            }
+
             if (PlayerLapNum >= 3)
             {
                 OnStageComplete?.Invoke(chapterStack.Count);
