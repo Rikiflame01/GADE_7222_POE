@@ -14,26 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueItems:
   - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
-    dialogue: Impressive stretch, isn't it? I've seen rookies buckle under the pressure
-      here.
+    dialogue: Quite the impressive stretch of track, wouldn't you agree? I've witnessed
+      many newcomers struggle to handle the intensity here.
     dialogueDescription: Observing The Track
   - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
-    dialogue: Every track has its quirks, but it's the racer that makes the difference.
-      It's about learning its rhythm.
+    dialogue: Each track brings its own unique challenges, yet it's ultimately the
+      skill of the driver that tips the scales. Success lies in tuning into the track's
+      unique rhythm.
     dialogueDescription: Observing The Track
   - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
-    dialogue: Think you've got the hang of it just by watching? It's not as easy
-      as it looks.
+    dialogue: Thinking you can master this just by observation? Trust me, it's trickier
+      than it appears from the sidelines.
     dialogueDescription: Discussing Strategy
   - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
-    dialogue: It's about anticipation, not reaction. We've been preparing for this.
+    dialogue: This is a game of foresight, not just reaction. All our training has
+      been leading up to this moment.
     dialogueDescription: Discussing Strategy
   - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
-    dialogue: That curve up ahead? Seen it take out some of the best. Hope you've
-      got good brakes.
+    dialogue: That curved track up ahead? Seen it take out some of the best. Hope
+      you've got good intuition
     dialogueDescription: Commenting On A Tricky Turn
   - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
-    dialogue: It's not about braking, it's about control. Precision over power.
+    dialogue: Racing is more about finesse than sheer speed. It's not just about
+      when to brake, but how to maintain control with precision
     dialogueDescription: Commenting On A Tricky Turn
   - speaker: {fileID: 11400000, guid: ff447c0918c0f6945aa8fa05428e1acf, type: 2}
     dialogue: Racing here is like carving your name into history. Hope you've brought

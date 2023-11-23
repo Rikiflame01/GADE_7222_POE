@@ -14,29 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueItems:
   - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
-    dialogue: Ah, you must be the new talent I've heard so much about! Welcome to
-      the world of racing. I've seen many racers come and go, but there's something
-      about you... Let's see if you have what it takes.
+    dialogue: Wow, you made it just in time! Rumor has it you're the hottest new
+      talent since the legendary Ol'Curly. The real test begins now. Will you soar
+      to new heights or crash in a blaze of glory? Time will tell if legends will
+      sing of your exploits!
     dialogueDescription: The Mentor
   - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
-    dialogue: Before you can race with the best, you need to master the basics. Let's
-      start with the basics. Use the WASD keys to navigate. 'W' to accelerate, 'S'
-      to brake, and 'A' and 'D' to steer left and right.
+    dialogue: Before you join the ranks of the elite racers, mastering the fundamentals
+      is key. Let's dive into the basics. Navigate using the WASD keys - 'W' for
+      acceleration, 'S' to brake, and 'A' and 'D' to steer. Ready to start your engine?
     dialogueDescription: Controls
   - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
-    dialogue: Remember, racing isn't just about speed; it's about strategy. On the
-      track, you'll find power-ups. The most crucial one is the Speedboost. It'll
-      give you a burst of speed, perfect for overtaking opponents or making a quick
-      escape.
+    dialogue: Remember, speed is just one piece of the puzzle. Strategy is equally
+      vital. Keep an eye out for power-ups on the circuit, especially the Speedboost.
+      It's a game-changer, offering a sudden surge of speed, ideal for passing rivals
+      or a quick getaway
     dialogueDescription: Strategy
   - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
-    dialogue: "Ride over that speed icon to pick up the Speedboost prepare yourself
-      because it\u2019ll be over in a flash."
+    dialogue: Aim for that spherical speed object to grab your Speedboost. Brace
+      yourself. Use it wisely!
     dialogueDescription: Power-Up Tutorial
   - speaker: {fileID: 11400000, guid: 24f26586124e34548831ebb405fa79b4, type: 2}
-    dialogue: Remember, every race is a new challenge, and every track has its secrets.
-      Learn them, and you'll be unstoppable. Now, let's get driving.
+    dialogue: Every race presents a unique challenge, and each circuit holds its
+      mysteries. Uncover these secrets, and you'll dominate the tracks. It's time
+      to rev up and hit the road
     dialogueDescription: Wrapping Up
   - speaker: {fileID: 11400000, guid: 9e323cb1b24d3f14f814862e17efba29, type: 2}
-    dialogue: Got it chief, let us get to work.
+    dialogue: Yes, boss! Time to roll up our sleeves and hit the track.
     dialogueDescription: The way forward
