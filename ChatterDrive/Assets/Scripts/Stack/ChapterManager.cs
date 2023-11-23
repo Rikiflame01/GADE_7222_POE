@@ -11,6 +11,7 @@ public class ChapterManager : MonoBehaviour
     public RaceHandler raceHandler;
     public RacerUI playerUI;
     public TMP_Text lapText;
+    public bool checkPointRace = false;
 
     private ChapterStack<Transform> chapterStack = new ChapterStack<Transform>();
 
@@ -48,9 +49,18 @@ public class ChapterManager : MonoBehaviour
         //Check after last pop is the Stack is empty
         if (chapterStack.IsEmpty)
         {
+            if(checkPointRace)
+            {
+                OnStageComplete?.Invoke(chapterStack.Count);
+                SFXManager.Instance.PlaySound("success");
+                return;
+            }
+
+
             if (PlayerLapNum >= 3)
             {
                 OnStageComplete?.Invoke(chapterStack.Count);
+                SFXManager.Instance.PlaySound("success");
                 return;
             }
             Debug.Log("Player has completed a lap");

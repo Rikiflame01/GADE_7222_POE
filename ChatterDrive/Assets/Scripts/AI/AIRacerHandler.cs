@@ -9,10 +9,10 @@ public class AIRacerHandler : MonoBehaviour
     [Header("References: ")]
     //Cache the singleton reference on start or awake
     [SerializeField] private Waypoints waypoints;
-    [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private NavMeshAgent racerAgent;
     [SerializeField] private AIRacerFactory racerFactory;
     [SerializeField] private RacerUI racerUI;
+    [SerializeField] private Transform racerVisualParent;
     [SerializeField] private ADTGraph graph;
 
     public int LapNum { get; private set; }
@@ -134,15 +134,15 @@ public class AIRacerHandler : MonoBehaviour
 
         //Set up the racer agent parameters
         racerAgent.speed = racerBase.RacerSpeed;
-        meshRenderer.material.color = racerBase.RacerColor;
         racerAgent.acceleration = racerBase.RacerAcceleration;
         racerAgent.angularSpeed = racerBase.RacerAngularSpeed;
 
     }
 
-    public void SetRacerMaterial(Material racerMaterial)
+    public void SetRacerVisualPrefab(GameObject racerVisualPrefab)
     {
-        meshRenderer.material = racerMaterial;
+        GameObject obj = Instantiate(racerVisualPrefab, racerVisualParent);
+        obj.transform.localPosition = Vector3.zero;
     }
 
     //This method is for the object triggering twice when entering a checkpoint which lead to weird beaviour

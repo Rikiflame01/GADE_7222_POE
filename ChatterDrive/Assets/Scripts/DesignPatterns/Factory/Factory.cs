@@ -20,7 +20,7 @@ public class AIRacerFactory: ScriptableObject, IAIRacerFactory
 {
     //Base racer with their material
     [SerializeField] private GameObject baseRacerPrefab;
-    [SerializeField] private Material[] racerMaterials;
+    [SerializeField] private GameObject[] racerVisualPrefabs;
 
     //Create/Instantiate the different racers
     public AIRacerBlizzard CreateBlizzardRacer()
@@ -54,7 +54,7 @@ public class AIRacerFactory: ScriptableObject, IAIRacerFactory
         GameObject racerInstance = Instantiate(baseRacerPrefab); 
         AIRacerHandler racerHandler = racerInstance.GetComponent<AIRacerHandler>();
         racerHandler.SetupRacerType(type);
-        racerHandler.SetRacerMaterial(racerMaterials[(int)type]);
+        racerHandler.SetRacerVisualPrefab(racerVisualPrefabs[(int)type]);
         return racerInstance;
     }
 }

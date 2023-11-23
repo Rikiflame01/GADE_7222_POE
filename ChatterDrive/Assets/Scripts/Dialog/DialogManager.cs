@@ -92,6 +92,7 @@ public class DialogueManager : MonoBehaviour
         {
             DialogueItem item = dialogueQueue.Dequeue();
             UpdateDialogueUI(item);
+            SFXManager.Instance.PlaySound("click1");
         }
         catch (Exception)
         {

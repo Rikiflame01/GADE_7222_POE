@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Acceleration and Deceleration
         if (playerInputNormalized.y > 0)
-        {
+        {      
             currentSpeed += acceleration * Time.deltaTime;
         }
         else if (playerInputNormalized.y < 0)

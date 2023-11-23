@@ -100,7 +100,7 @@ public class CheckpointUI : MonoBehaviour
     {
         //timer = timePerCheckpoint;
         SetTimeScale(1);
-        SceneManager.LoadScene(SceneName.BeginnerRace.ToString());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
 }

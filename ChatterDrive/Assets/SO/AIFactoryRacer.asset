@@ -20,3 +20,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 38d520783d43d494f99b1f8e47356272, type: 2}
   - {fileID: 2100000, guid: 80edcddbe5595aa44b37588f4ffebffc, type: 2}
   - {fileID: 2100000, guid: 4b8e6c1195912d346b24865e08ff84dc, type: 2}
+  racerVisualPrefabs:
+  - {fileID: 7032396863654814008, guid: afe04bb8d581b48478090a8db256b835, type: 3}
+  - {fileID: 4554045241069599274, guid: 080f31e1a2cda5b4b8b879a2576b6591, type: 3}
+  - {fileID: 7928854052366767620, guid: 03e52b89781a8e841b12950a01982918, type: 3}
+  - {fileID: 1668114970370619403, guid: c5b851d8774e3884d80693e852a5fa80, type: 3}
+  - {fileID: 6559746651426675434, guid: 32f95d493194cc64fb3d3dccc978cc96, type: 3}

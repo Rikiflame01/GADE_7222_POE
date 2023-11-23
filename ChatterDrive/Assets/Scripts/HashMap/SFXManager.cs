@@ -53,7 +53,7 @@ public class SFXManager : MonoBehaviour
             switch (currentSceneEnum)
             {
                 case SceneName.MainMenu:
-                    PlaySound("MMMusic");
+                    //PlaySound(audioClips[0].name);
                     break;
                 case SceneName.BeginnerRace:
                     // PlaySound for BeginnerRace is not yet added
@@ -88,5 +88,21 @@ public class SFXManager : MonoBehaviour
         {
             audioSource.PlayOneShot(clip);
         }
+    }
+
+    public bool CheckIfSFXPlaying(string soundName)
+    {
+        AudioClip clip = soundMap.Get(soundName);
+        if (clip != null)
+        {
+            if (audioSource.isPlaying)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }else return false;
     }
 }

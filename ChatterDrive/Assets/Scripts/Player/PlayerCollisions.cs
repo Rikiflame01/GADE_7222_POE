@@ -15,6 +15,7 @@ public class PlayerCollisions : MonoBehaviour
         if(collision.collider.CompareTag("Ground"))
         {
             checkpointUI.ShowLoseScreen(true);
+            SFXManager.Instance.PlaySound("death");
         }
     }
 
@@ -27,13 +28,19 @@ public class PlayerCollisions : MonoBehaviour
             chapterManager.CheckpointReached();
             Debug.Log("Checkpoints Trigger");
             //other.gameObject.SetActive(false);
+            SFXManager.Instance.PlaySound("ding");
 
         }
         //Check to see if player triggered speed boost
         if (other.CompareTag("SpeedBoost"))
         {
-            playerMovement.IncreasePlayerSpeed(3f);
+            playerMovement.IncreasePlayerSpeed(5f);
             other.gameObject.SetActive(false);
+        }
+
+        if(other.CompareTag("Cheer"))
+        {
+            SFXManager.Instance.PlaySound("cheering");
         }
 
     }
