@@ -14,21 +14,12 @@ public class SFXManager : MonoBehaviour
     void Awake()
     {
         SceneChangeNotifier.OnSceneChanged += HandleSceneChanged;
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
-            soundMap = new CustomHashmap<string, AudioClip>(audioClips.Count);
-            foreach (AudioClip clip in audioClips)
-            {
-                soundMap.Add(clip.name, clip);
-            }
-        }
-        else
+        soundMap = new CustomHashmap<string, AudioClip>(audioClips.Count);
+        foreach (AudioClip clip in audioClips)
         {
-            Destroy(gameObject);
+            soundMap.Add(clip.name, clip);
         }
 
     }
@@ -55,27 +46,10 @@ public class SFXManager : MonoBehaviour
                 case SceneName.MainMenu:
                     PlaySound("MMMusic");
                     break;
-                case SceneName.BeginnerRace:
-                    // PlaySound for BeginnerRace is not yet added
-                    break;
-                case SceneName.CheckpointRace:
-                    // PlaySound for CheckpointRace is not yet added
-                    break;
-                case SceneName.AdvancedRace:
-                    PlaySound("AdvancedSceneMusic");
-                    break;
-                case SceneName.CheckpointRaceDialogue:
-                    // PlaySound for CheckpointRaceDialogue is not yet added
-                    break;
                 case SceneName.BeginnerRaceDialogue:
-                    // PlaySound for BeginnerRaceDialogue is not yet added
+                    PlaySound("DialogNext");
                     break;
-                case SceneName.AdvancedRaceDialogue:
-                    // PlaySound for AdvancedRaceDialogue is not yet added
-                    break;
-                default:
-                    // Handle any undefined scenes here Mr.M
-                    break;
+
             }
         }
     }
@@ -87,6 +61,16 @@ public class SFXManager : MonoBehaviour
         if (clip != null)
         {
             audioSource.PlayOneShot(clip);
+        }
+    }
+    public void PlayLoudSound(string soundName)
+    {
+        int volume = 3;
+        audioSource.Stop(); // Stop any currently playing audio
+        AudioClip clip = soundMap.Get(soundName);
+        if (clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
         }
     }
 }

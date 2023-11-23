@@ -885,6 +885,7 @@ MonoBehaviour:
   timerText: {fileID: 0}
   chapterManager: {fileID: 0}
   timePerCheckpoint: 10
+  showCheckpointUI: 0
   loseScreen: {fileID: 5667255135292689006}
   winScreen: {fileID: 4700552388295002478}
 --- !u!1 &2556866368634248994
@@ -916,9 +917,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8401213113148960445}
   - {fileID: 6460320543303022028}
   - {fileID: 1235477369749376472}
-  - {fileID: 8401213113148960445}
   - {fileID: 1182104098398783425}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

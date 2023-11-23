@@ -8,6 +8,12 @@ public class PlayerCollisions : MonoBehaviour
     public PlayerMovement playerMovement;
     public CheckpointUI checkpointUI;
     public ChapterManager chapterManager;
+    SFXManager sfxManager;
+
+    private void Awake()
+    {
+        sfxManager = FindObjectOfType<SFXManager>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,6 +22,12 @@ public class PlayerCollisions : MonoBehaviour
         {
             checkpointUI.ShowLoseScreen(true);
         }
+        if (collision.collider.CompareTag("Crashable"))
+        {
+            sfxManager.PlaySound("CarCrash");
+        }
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
