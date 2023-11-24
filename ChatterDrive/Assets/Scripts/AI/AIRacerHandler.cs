@@ -15,6 +15,9 @@ public class AIRacerHandler : MonoBehaviour
     [SerializeField] private Transform racerVisualParent;
     [SerializeField] private ADTGraph graph;
 
+    [Header("Settings")]
+    [SerializeField] private bool increaseTimer = false;
+
     public int LapNum { get; private set; }
     [field: SerializeField] public int Index { get; private set; }
     [field: SerializeField] public bool advanced { get; set; }
@@ -66,7 +69,7 @@ public class AIRacerHandler : MonoBehaviour
         //Handling AIracer when they reached a checkpoint
         if(other.CompareTag("Checkpoint") && !isReached)
         {
-            Debug.Log($"Triggered by {gameObject.name} / {other.name}");
+            //Debug.Log($"Triggered by {gameObject.name} / {other.name}");
             StartCoroutine(DisableRacerTrigger());
             RacerReachedCheckpoint();
         }
@@ -148,7 +151,13 @@ public class AIRacerHandler : MonoBehaviour
     //This method is for the object triggering twice when entering a checkpoint which lead to weird beaviour
     IEnumerator DisableRacerTrigger()
     {
-        yield return new WaitForSeconds(1f);
+        float timer = 1f;
+
+        if(increaseTimer)
+        {
+            timer = 2f;
+        }
+        yield return new WaitForSeconds(timer);
         isReached = false;
     }
     //For setting up the AIRacer on the leaderboard

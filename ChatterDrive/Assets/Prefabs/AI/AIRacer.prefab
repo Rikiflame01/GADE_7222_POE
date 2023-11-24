@@ -137,7 +137,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.8037071, y: 1.1422228, z: 4.018093}
+  m_Size: {x: 2.15, y: 1.1422228, z: 3.17}
   m_Center: {x: 0.035549164, y: 0.7088886, z: 0.0650692}
 --- !u!114 &671716409947271144
 MonoBehaviour:
@@ -152,12 +152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: {fileID: 0}
-  meshRenderer: {fileID: 0}
   racerAgent: {fileID: 203677238167936140}
   racerFactory: {fileID: 11400000, guid: 7231796401703ef489a72c6f7108cce8, type: 2}
   racerUI: {fileID: 5976729910885061267}
   racerVisualParent: {fileID: 4588791323855260715}
   graph: {fileID: 0}
+  increaseTimer: 0
   <Index>k__BackingField: 0
   <advanced>k__BackingField: 0
   waypointIndex: 0

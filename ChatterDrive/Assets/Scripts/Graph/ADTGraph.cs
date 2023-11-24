@@ -26,8 +26,8 @@ public class ADTGraph : Singleton<ADTGraph>
         graph = new Graph(nodeList);
 
         //Add the edges according to diagram
-        graph.AddDirectedEdge(0, 1);
-        graph.AddDirectedEdge(1, 2);
+        graph.AddDirectedEdge(0, 1); //A, B, C, D, E, F, G, H, I
+        graph.AddDirectedEdge(1, 2); //0, 1, 2, 3, 4, 5, 6, 7, 8
         graph.AddDirectedEdge(1, 3);
         graph.AddDirectedEdge(2, 4);
         graph.AddDirectedEdge(3, 4);
