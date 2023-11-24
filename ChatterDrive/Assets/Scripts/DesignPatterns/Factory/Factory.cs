@@ -132,7 +132,7 @@ public class AIRacerBlizzard : AIRacerBase
 public class AIRacerMagma : AIRacerBase
 {
     //earth racers gradual acceleration and medium top speed
-    public AIRacerMagma() : base(Color.yellow, 8, 9, 1000, RacerType.Magman)
+    public AIRacerMagma() : base(Color.yellow, 6, 9, 1000, RacerType.Magman)
     {
         // 
 
