@@ -52,6 +52,8 @@ public class ADTGraph : Singleton<ADTGraph>
         Debug.Log(nodeList.Size());
         return nodeList.Size();
     }
+
+
 }
 
 public class Graph
@@ -93,26 +95,18 @@ public class Graph
             racer.waypointIndex = previousNode.index + 2; //Set index because of diverging node
             if (second)
             {
-                
                 return previousNode.neighbours.GetAtIndex(1);
             }
             else
             {
                 return previousNode.neighbours.GetAtIndex(0);
             }
-
-            
         }
         else
         {
             return currentNode;
         }
-
-
-
     }
-
-
 
     public override string ToString()
     {
